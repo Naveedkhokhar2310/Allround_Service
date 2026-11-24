@@ -14,8 +14,7 @@ import { LangCode } from '@core/i18n/i18n.types';
       <div class="header-container">
         <!-- Brand Logo -->
         <a routerLink="/" class="header-logo" aria-label="Allround Dienstleistung GbR Startseite">
-          <span class="logo-title">allround</span>
-          <span class="logo-subtitle">DIENSTLEISTUNG GbR</span>
+          <img src="assets/images/logo.svg" alt="Allround Dienstleistung GbR" class="logo-image" width="182" height="40" />
         </a>
 
         <!-- Desktop Navigation Links -->
@@ -141,27 +140,20 @@ import { LangCode } from '@core/i18n/i18n.types';
 
     // Logo
     .header-logo {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
+      display: inline-flex;
+      align-items: center;
       text-decoration: none;
-      line-height: 1;
+      transition: opacity var(--transition-fast);
 
-      .logo-title {
-        font-size: 32px;
-        font-weight: 700;
-        color: var(--color-navy);
-        letter-spacing: -1.6px;
-        line-height: 1.12;
+      &:hover {
+        opacity: 0.9;
       }
 
-      .logo-subtitle {
-        font-size: 8px;
-        font-weight: 700;
-        color: var(--color-muted);
-        letter-spacing: 1.2px;
-        line-height: 1.6;
-        margin-top: 2px;
+      .logo-image {
+        display: block;
+        height: 40px;
+        width: auto;
+        max-width: 190px;
       }
     }
 

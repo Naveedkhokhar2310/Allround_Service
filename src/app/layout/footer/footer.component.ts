@@ -15,10 +15,9 @@ import { TranslationService } from '@core/services/translation.service';
         <div class="footer-main-row">
           <!-- Brand Column -->
           <div class="footer-brand">
-            <div class="brand-logo">
-              <span class="logo-title">allround</span>
-              <span class="logo-subtitle">Dienstleistung GbR</span>
-            </div>
+            <a routerLink="/" class="footer-logo" aria-label="Allround Dienstleistung GbR Startseite">
+              <img src="assets/images/logo.svg" alt="Allround Dienstleistung GbR" class="logo-image" width="182" height="40" />
+            </a>
             <p class="brand-tagline">{{ t().footer.tagline }}</p>
           </div>
 
@@ -84,24 +83,23 @@ import { TranslationService } from '@core/services/translation.service';
     .footer-brand {
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 12px;
 
-      .brand-logo {
-        display: flex;
-        flex-direction: column;
-        line-height: 1.1;
+      .footer-logo {
+        display: inline-flex;
+        align-items: center;
+        text-decoration: none;
+        transition: opacity var(--transition-fast);
 
-        .logo-title {
-          font-size: 32px;
-          font-weight: 700;
-          color: var(--color-navy);
-          letter-spacing: -0.96px;
+        &:hover {
+          opacity: 0.9;
         }
 
-        .logo-subtitle {
-          font-size: 12px;
-          font-weight: 500;
-          color: var(--color-muted);
+        .logo-image {
+          display: block;
+          height: 40px;
+          width: auto;
+          max-width: 190px;
         }
       }
 

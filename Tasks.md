@@ -59,6 +59,8 @@
 - [x] Implement Modern Signal-Based Multilingual Translation (DE | EN)
 - [x] Refine copy and German/English SEO content using `/copywriting`, `/content-strategy`, and `/seo-audit` skills
 - [x] Add Schema.org JSON-LD LocalBusiness structured data, robots.txt, and sitemap.xml
+- [x] Design official brand logo system in Figma (`Allround · Logo System` node `19:330` with primary light, inverted dark, transparent minimal, and app-icon variants)
+- [x] Export production SVG logo assets (`logo.svg`, `logo-white.svg`, `logo-mark.svg`, `favicon.svg`) and integrate into Angular Header, Footer, and Favicon
 
 ### Phase 7: Responsive Layout QA
 - [ ] Mobile viewport audit (360px – 480px)
