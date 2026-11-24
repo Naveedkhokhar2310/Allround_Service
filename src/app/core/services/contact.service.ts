@@ -3,7 +3,7 @@ import { ContactRequest, ContactSubmissionResult } from '../models/contact-reque
 
 export const BUSINESS_PHONE = '+49 173 9074381';
 export const BUSINESS_PHONE_CLEAN = '491739074381';
-export const BUSINESS_LOCATION = 'Weingarten, Deutschland';
+export const BUSINESS_LOCATION = 'Weingarten, Germany';
 
 @Injectable({
   providedIn: 'root',

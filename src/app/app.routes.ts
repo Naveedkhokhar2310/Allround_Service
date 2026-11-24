@@ -6,12 +6,20 @@ export const routes: Routes = [
     loadComponent: () => import('./features/home/home.component').then((m) => m.HomeComponent),
   },
   {
+    path: 'imprint',
+    loadComponent: () => import('./features/legal/imprint/imprint.component').then((m) => m.ImprintComponent),
+  },
+  {
+    path: 'privacy',
+    loadComponent: () => import('./features/legal/privacy/privacy.component').then((m) => m.PrivacyComponent),
+  },
+  {
     path: 'impressum',
-    loadComponent: () => import('./features/legal/impressum/impressum.component').then((m) => m.ImpressumComponent),
+    redirectTo: 'imprint',
   },
   {
     path: 'datenschutz',
-    loadComponent: () => import('./features/legal/datenschutz/datenschutz.component').then((m) => m.DatenschutzComponent),
+    redirectTo: 'privacy',
   },
   {
     path: '**',

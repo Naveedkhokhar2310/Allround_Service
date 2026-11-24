@@ -1,21 +1,22 @@
 import { Component, ChangeDetectionStrategy, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ContactService, BUSINESS_PHONE } from '@core/services/contact.service';
+import { TranslationService } from '@core/services/translation.service';
 
 @Component({
   selector: 'app-quick-action-bar',
   standalone: true,
   imports: [CommonModule],
   template: `
-    <aside class="quick-action-bar" aria-label="Schnellkontakt">
-      <a [href]="'tel:' + phoneClean" class="action-btn action-call" aria-label="Jetzt anrufen">
+    <aside class="quick-action-bar" aria-label="Quick contact">
+      <a [href]="'tel:' + phoneClean" class="action-btn action-call" [attr.aria-label]="t().quickBar.call">
         <span class="btn-icon">📞</span>
-        <span class="btn-label">Anrufen</span>
+        <span class="btn-label">{{ t().quickBar.call }}</span>
       </a>
 
-      <a [href]="whatsappUrl" target="_blank" rel="noopener noreferrer" class="action-btn action-whatsapp" aria-label="WhatsApp Nachricht senden">
+      <a [href]="whatsappUrl" target="_blank" rel="noopener noreferrer" class="action-btn action-whatsapp" [attr.aria-label]="t().quickBar.whatsapp">
         <span class="btn-icon">💬</span>
-        <span class="btn-label">WhatsApp</span>
+        <span class="btn-label">{{ t().quickBar.whatsapp }}</span>
       </a>
     </aside>
   `,
@@ -81,6 +82,9 @@ import { ContactService, BUSINESS_PHONE } from '@core/services/contact.service';
 })
 export class QuickActionBarComponent {
   private readonly contactService = inject(ContactService);
+  private readonly translationService = inject(TranslationService);
+
+  readonly t = this.translationService.t;
   readonly phone = BUSINESS_PHONE;
   readonly phoneClean = '+491739074381';
   readonly whatsappUrl = this.contactService.getWhatsAppUrl();

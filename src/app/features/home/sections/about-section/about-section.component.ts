@@ -1,19 +1,20 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BadgeComponent } from '@shared/components/badge/badge.component';
+import { TranslationService } from '@core/services/translation.service';
 
 @Component({
   selector: 'app-about-section',
   standalone: true,
   imports: [CommonModule, BadgeComponent],
   template: `
-    <section id="ueber-uns" class="about-section" aria-label="Über uns">
+    <section id="about" class="about-section" aria-label="About us">
       <div class="about-container container-allround">
         <!-- Visual Media Left Column -->
         <div class="about-media-col">
           <div class="image-card">
             <img
-              src="/assets/images/umzuege.png"
+              src="/assets/images/moving.png"
               alt="Umzug und Allround Service Weingarten"
               class="about-image"
               loading="lazy"
@@ -21,30 +22,26 @@ import { BadgeComponent } from '@shared/components/badge/badge.component';
           </div>
         </div>
 
-        <!-- Narrative Right Column (from Figma node 5:150) -->
+        <!-- Narrative Right Column -->
         <div class="about-content-col">
-          <app-badge variant="muted">01 / ÜBER UNS</app-badge>
+          <app-badge variant="muted">{{ t().about.badge }}</app-badge>
 
           <h2 class="about-title">
-            <span>Viel zu tun?</span>
-            <span>Wir sind für Sie da.</span>
+            <span>{{ t().about.titleLine1 }}</span>
+            <span>{{ t().about.titleLine2 }}</span>
           </h2>
 
           <div class="about-body">
-            <p>
-              Manchmal braucht es einfach jemanden, der anpackt. Als Allround Dienstleistung GbR unterstützen wir Privatpersonen und Unternehmen in Weingarten – genau dort, wo Hilfe gebraucht wird.
-            </p>
-            <p>
-              Von der ersten Absprache bis zum letzten Handgriff: Sie haben einen festen Ansprechpartner und wir behalten alles im Blick.
-            </p>
+            <p>{{ t().about.p1 }}</p>
+            <p>{{ t().about.p2 }}</p>
           </div>
 
-          <!-- Service Promise Box (from Figma node 5:155) -->
+          <!-- Service Promise Box -->
           <div class="about-promise-box">
             <span class="promise-arrow">→</span>
             <div class="promise-text">
-              <p class="promise-title">Aus Weingarten. Für Ihren Alltag.</p>
-              <p class="promise-subtitle">Nah dran. Einfach erreichbar.</p>
+              <p class="promise-title">{{ t().about.promiseTitle }}</p>
+              <p class="promise-subtitle">{{ t().about.promiseSubtitle }}</p>
             </div>
           </div>
         </div>
@@ -163,4 +160,7 @@ import { BadgeComponent } from '@shared/components/badge/badge.component';
   `],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AboutSectionComponent {}
+export class AboutSectionComponent {
+  private readonly translationService = inject(TranslationService);
+  readonly t = this.translationService.t;
+}

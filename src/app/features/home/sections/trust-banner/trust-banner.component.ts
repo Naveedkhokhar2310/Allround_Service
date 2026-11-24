@@ -1,5 +1,6 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { TranslationService } from '@core/services/translation.service';
 
 @Component({
   selector: 'app-trust-banner',
@@ -10,15 +11,15 @@ import { CommonModule } from '@angular/common';
       <div class="banner-container container-allround">
         <div class="trust-item">
           <span class="trust-check">✓</span>
-          <span class="trust-label">Ein Ansprechpartner</span>
+          <span class="trust-label">{{ t().trust.item1 }}</span>
         </div>
         <div class="trust-item">
           <span class="trust-check">✓</span>
-          <span class="trust-label">Flexible Lösungen</span>
+          <span class="trust-label">{{ t().trust.item2 }}</span>
         </div>
         <div class="trust-item">
           <span class="trust-check">✓</span>
-          <span class="trust-label">Für Privat & Gewerbe</span>
+          <span class="trust-label">{{ t().trust.item3 }}</span>
         </div>
       </div>
     </section>
@@ -64,4 +65,7 @@ import { CommonModule } from '@angular/common';
   `],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TrustBannerComponent {}
+export class TrustBannerComponent {
+  private readonly translationService = inject(TranslationService);
+  readonly t = this.translationService.t;
+}

@@ -7,7 +7,10 @@
 - **Strict Typing**: No `any`. Utilize explicit interfaces, types, and readonly arrays where data is immutable.
 - **No Over-Engineering**: Do not introduce external libraries or dependencies unless strictly necessary and approved.
 
-### 2. Angular Standards
+### 2. Angular Standards & Language Separation
+- **Code Language vs. UI Language**:
+  - All source code identifiers (HTML IDs, CSS classes, variable names, method names, models, service IDs, attributes, filenames, routes, and asset names) must strictly be in **English** (e.g. `id="contact"`, `id="about"`, `id="services"`, `id="why-allround"`, `courier`, `clearance`, `moving`, `caretaker`, `cleaning`, `gardening`).
+  - User-facing UI copy, labels, and placeholders are localized in German and English via the i18n dictionaries (`de.ts` and `en.ts`).
 - **Component Architecture**:
   - Always use Standalone Components (`standalone: true`).
   - Always set `changeDetection: ChangeDetectionStrategy.OnPush`.

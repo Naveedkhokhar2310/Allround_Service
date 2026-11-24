@@ -40,7 +40,7 @@ import { ServiceItem } from '@core/models/service-item.model';
           type="button"
           class="service-action"
           (click)="onActionClick($event)"
-          [attr.aria-label]="service().title + ' anfragen'"
+          [attr.aria-label]="service().actionText + ': ' + service().title"
         >
           <span>{{ service().actionText }}</span>
           <span class="action-arrow">→</span>

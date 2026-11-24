@@ -1,48 +1,49 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BadgeComponent } from '@shared/components/badge/badge.component';
 import { ValueCardComponent } from '@shared/components/value-card/value-card.component';
+import { TranslationService } from '@core/services/translation.service';
 
 @Component({
   selector: 'app-values-section',
   standalone: true,
   imports: [CommonModule, BadgeComponent, ValueCardComponent],
   template: `
-    <section id="warum-allround" class="values-section" aria-label="Warum Allround">
+    <section id="why-allround" class="values-section" aria-label="Why Allround">
       <div class="values-container container-allround">
-        <!-- Section Title (from Figma node 5:397) -->
+        <!-- Section Title -->
         <div class="values-header">
-          <app-badge variant="green">03 / WARUM ALLROUND</app-badge>
+          <app-badge variant="green">{{ t().whyUs.badge }}</app-badge>
           <h2 class="values-title">
-            <span>Gute Arbeit beginnt</span>
-            <span>mit einem guten Gefühl.</span>
+            <span>{{ t().whyUs.titleLine1 }}</span>
+            <span>{{ t().whyUs.titleLine2 }}</span>
           </h2>
         </div>
 
-        <!-- 4 Value Cards in 2x2 Grid (from Figma node 5:400) -->
+        <!-- 4 Value Cards in 2x2 Grid -->
         <div class="values-grid">
           <app-value-card
             number="01 /"
-            title="Auf uns ist Verlass."
-            description="Klare Absprachen, sorgfältige Arbeit. Wir nehmen Ihr Anliegen ernst."
+            [title]="t().whyUs.value1Title"
+            [description]="t().whyUs.value1Desc"
           />
 
           <app-value-card
             number="02 /"
-            title="So flexibel wie Ihr Alltag."
-            description="Wir finden eine passende Lösung – auch wenn es einmal anders kommt."
+            [title]="t().whyUs.value2Title"
+            [description]="t().whyUs.value2Desc"
           />
 
           <app-value-card
             number="03 /"
-            title="Sorgfalt in jedem Detail."
-            description="Wir packen nicht nur an. Wir denken mit und arbeiten mit Anspruch."
+            [title]="t().whyUs.value3Title"
+            [description]="t().whyUs.value3Desc"
           />
 
           <app-value-card
             number="04 /"
-            title="Persönlich statt anonym."
-            description="Direkter Kontakt, kurze Wege. Sie wissen immer, wer sich kümmert."
+            [title]="t().whyUs.value4Title"
+            [description]="t().whyUs.value4Desc"
           />
         </div>
       </div>
@@ -94,4 +95,7 @@ import { ValueCardComponent } from '@shared/components/value-card/value-card.com
   `],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ValuesSectionComponent {}
+export class ValuesSectionComponent {
+  private readonly translationService = inject(TranslationService);
+  readonly t = this.translationService.t;
+}

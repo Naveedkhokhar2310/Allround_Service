@@ -1,7 +1,9 @@
-import { Component, ChangeDetectionStrategy, signal } from '@angular/core';
+import { Component, ChangeDetectionStrategy, signal, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { ButtonComponent } from '@shared/components/button/button.component';
+import { TranslationService } from '@core/services/translation.service';
+import { LangCode } from '@core/i18n/i18n.types';
 
 @Component({
   selector: 'app-header',
@@ -17,47 +19,93 @@ import { ButtonComponent } from '@shared/components/button/button.component';
         </a>
 
         <!-- Desktop Navigation Links -->
-        <nav class="desktop-nav" aria-label="Hauptnavigation">
-          <a href="#ueber-uns" class="nav-link">Über uns</a>
-          <a href="#leistungen" class="nav-link">Leistungen</a>
-          <a href="#warum-allround" class="nav-link">Warum Allround</a>
+        <nav class="desktop-nav" aria-label="Main Navigation">
+          <a href="#about" class="nav-link">{{ t().nav.about }}</a>
+          <a href="#services" class="nav-link">{{ t().nav.services }}</a>
+          <a href="#why-allround" class="nav-link">{{ t().nav.whyUs }}</a>
+
+          <!-- Language Switcher Pill -->
+          <div class="lang-switch" role="group" aria-label="Language Selector">
+            <button
+              type="button"
+              class="lang-btn"
+              [class.active]="currentLang() === 'de'"
+              (click)="setLang('de')"
+              aria-label="Deutsch"
+            >
+              DE
+            </button>
+            <span class="lang-divider">|</span>
+            <button
+              type="button"
+              class="lang-btn"
+              [class.active]="currentLang() === 'en'"
+              (click)="setLang('en')"
+              aria-label="English"
+            >
+              EN
+            </button>
+          </div>
+
           <app-button
-            label="Kontakt aufnehmen"
+            [label]="t().nav.contactBtn"
             variant="primary"
             size="md"
             arrowDirection="right"
-            href="#kontakt"
+            href="#contact"
           />
         </nav>
 
-        <!-- Mobile Menu Toggle Button -->
-        <button
-          type="button"
-          class="mobile-toggle"
-          (click)="toggleMobileMenu()"
-          [attr.aria-expanded]="mobileMenuOpen()"
-          aria-label="Menü öffnen"
-        >
-          <span class="hamburger-bar" [class.open]="mobileMenuOpen()"></span>
-          <span class="hamburger-bar" [class.open]="mobileMenuOpen()"></span>
-          <span class="hamburger-bar" [class.open]="mobileMenuOpen()"></span>
-        </button>
+        <!-- Mobile Controls: Lang toggle + Hamburger -->
+        <div class="mobile-actions">
+          <div class="lang-switch lang-switch-mobile" role="group" aria-label="Language Selector">
+            <button
+              type="button"
+              class="lang-btn"
+              [class.active]="currentLang() === 'de'"
+              (click)="setLang('de')"
+            >
+              DE
+            </button>
+            <span class="lang-divider">|</span>
+            <button
+              type="button"
+              class="lang-btn"
+              [class.active]="currentLang() === 'en'"
+              (click)="setLang('en')"
+            >
+              EN
+            </button>
+          </div>
+
+          <button
+            type="button"
+            class="mobile-toggle"
+            (click)="toggleMobileMenu()"
+            [attr.aria-expanded]="mobileMenuOpen()"
+            [attr.aria-label]="t().nav.openMenu"
+          >
+            <span class="hamburger-bar" [class.open]="mobileMenuOpen()"></span>
+            <span class="hamburger-bar" [class.open]="mobileMenuOpen()"></span>
+            <span class="hamburger-bar" [class.open]="mobileMenuOpen()"></span>
+          </button>
+        </div>
       </div>
 
       <!-- Mobile Dropdown Drawer -->
       @if (mobileMenuOpen()) {
         <div class="mobile-drawer animate-fade-in">
           <nav class="mobile-nav" aria-label="Mobile Navigation">
-            <a href="#ueber-uns" class="mobile-nav-link" (click)="closeMobileMenu()">Über uns</a>
-            <a href="#leistungen" class="mobile-nav-link" (click)="closeMobileMenu()">Leistungen</a>
-            <a href="#warum-allround" class="mobile-nav-link" (click)="closeMobileMenu()">Warum Allround</a>
+            <a href="#about" class="mobile-nav-link" (click)="closeMobileMenu()">{{ t().nav.about }}</a>
+            <a href="#services" class="mobile-nav-link" (click)="closeMobileMenu()">{{ t().nav.services }}</a>
+            <a href="#why-allround" class="mobile-nav-link" (click)="closeMobileMenu()">{{ t().nav.whyUs }}</a>
             <div class="mobile-cta-wrapper" (click)="closeMobileMenu()">
               <app-button
-                label="Kontakt aufnehmen"
+                [label]="t().nav.contactBtn"
                 variant="primary"
                 size="md"
                 arrowDirection="right"
-                href="#kontakt"
+                href="#contact"
               />
             </div>
           </nav>
@@ -91,7 +139,7 @@ import { ButtonComponent } from '@shared/components/button/button.component';
       gap: 24px;
     }
 
-    // Logo (from Figma node 5:120)
+    // Logo
     .header-logo {
       display: flex;
       flex-direction: column;
@@ -121,9 +169,9 @@ import { ButtonComponent } from '@shared/components/button/button.component';
     .desktop-nav {
       display: none;
       align-items: center;
-      gap: 32px;
+      gap: 28px;
 
-      @media (min-width: 900px) {
+      @media (min-width: 960px) {
         display: flex;
       }
 
@@ -141,6 +189,56 @@ import { ButtonComponent } from '@shared/components/button/button.component';
       }
     }
 
+    // Language Switcher Pill
+    .lang-switch {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background-color: var(--color-mist);
+      padding: 6px 10px;
+      border-radius: var(--border-radius-md);
+      border: 1px solid var(--color-border);
+      font-size: 12px;
+      font-weight: 700;
+
+      .lang-btn {
+        background: none;
+        border: none;
+        padding: 2px 4px;
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--color-muted);
+        cursor: pointer;
+        transition: all var(--transition-fast);
+        border-radius: 3px;
+
+        &.active {
+          color: var(--color-navy);
+          background-color: var(--color-white);
+          box-shadow: 0 1px 3px rgba(16, 40, 61, 0.1);
+        }
+
+        &:hover:not(.active) {
+          color: var(--color-navy);
+        }
+      }
+
+      .lang-divider {
+        color: var(--color-border);
+        font-size: 10px;
+      }
+    }
+
+    .mobile-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+
+      @media (min-width: 960px) {
+        display: none;
+      }
+    }
+
     // Mobile Toggle
     .mobile-toggle {
       display: flex;
@@ -152,10 +250,6 @@ import { ButtonComponent } from '@shared/components/button/button.component';
       border: none;
       cursor: pointer;
       padding: 4px;
-
-      @media (min-width: 900px) {
-        display: none;
-      }
 
       .hamburger-bar {
         width: 100%;
@@ -182,7 +276,7 @@ import { ButtonComponent } from '@shared/components/button/button.component';
       border-top: 1px solid var(--color-border);
       padding: 24px clamp(20px, 6vw, 96px) 32px;
 
-      @media (min-width: 900px) {
+      @media (min-width: 960px) {
         display: none;
       }
 
@@ -213,7 +307,15 @@ import { ButtonComponent } from '@shared/components/button/button.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderComponent {
+  private readonly translationService = inject(TranslationService);
+  readonly t = this.translationService.t;
+  readonly currentLang = this.translationService.currentLang;
+
   readonly mobileMenuOpen = signal<boolean>(false);
+
+  setLang(lang: LangCode): void {
+    this.translationService.setLanguage(lang);
+  }
 
   toggleMobileMenu(): void {
     this.mobileMenuOpen.update((open) => !open);
