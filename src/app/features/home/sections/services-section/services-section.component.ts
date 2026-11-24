@@ -1,6 +1,7 @@
 import { Component, ChangeDetectionStrategy, inject, output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ServicesCatalogService } from '@core/services/services-catalog.service';
+import { TranslationService } from '@core/services/translation.service';
 import { ServiceItem } from '@core/models/service-item.model';
 import { ServiceCardComponent } from '@shared/components/service-card/service-card.component';
 import { BadgeComponent } from '@shared/components/badge/badge.component';
@@ -10,26 +11,26 @@ import { BadgeComponent } from '@shared/components/badge/badge.component';
   standalone: true,
   imports: [CommonModule, ServiceCardComponent, BadgeComponent],
   template: `
-    <section id="leistungen" class="services-section" aria-label="Unsere Leistungen">
+    <section id="services" class="services-section" aria-label="Our services">
       <div class="services-container container-allround">
-        <!-- Section Header (from Figma node 5:341) -->
+        <!-- Section Header -->
         <div class="services-header">
           <div class="header-left">
-            <app-badge variant="muted">02 / UNSERE LEISTUNGEN</app-badge>
+            <app-badge variant="muted">{{ t().services.badge }}</app-badge>
             <h2 class="services-title">
-              <span>Was ansteht.</span>
-              <span>Wir packen es an.</span>
+              <span>{{ t().services.titleLine1 }}</span>
+              <span>{{ t().services.titleLine2 }}</span>
             </h2>
           </div>
 
           <div class="header-right">
-            <p>Sechs Leistungen. Ein gutes Gefühl.</p>
-            <p>Entdecken Sie, wie wir Ihnen den Alltag</p>
-            <p>ein Stück leichter machen.</p>
+            <p>{{ t().services.descLine1 }}</p>
+            <p>{{ t().services.descLine2 }}</p>
+            <p>{{ t().services.descLine3 }}</p>
           </div>
         </div>
 
-        <!-- 6-Card Grid (from Figma node 5:346) -->
+        <!-- 6-Card Grid -->
         <div class="services-grid">
           @for (service of services(); track service.id) {
             <div class="service-grid-item">
@@ -124,13 +125,15 @@ import { BadgeComponent } from '@shared/components/badge/badge.component';
 })
 export class ServicesSectionComponent {
   private readonly catalogService = inject(ServicesCatalogService);
+  private readonly translationService = inject(TranslationService);
+
+  readonly t = this.translationService.t;
   readonly services = this.catalogService.services;
   readonly serviceSelected = output<ServiceItem>();
 
   onSelectService(service: ServiceItem): void {
     this.serviceSelected.emit(service);
-    // Smooth scroll to contact inquiry form and select service
-    const contactElem = document.getElementById('kontakt');
+    const contactElem = document.getElementById('contact');
     if (contactElem) {
       contactElem.scrollIntoView({ behavior: 'smooth' });
     }

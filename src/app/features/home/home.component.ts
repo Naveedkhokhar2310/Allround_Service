@@ -39,16 +39,16 @@ import { ServiceItem } from '@core/models/service-item.model';
         <!-- Trust Banner -->
         <app-trust-banner />
 
-        <!-- 01 / Über uns -->
+        <!-- 01 / About Us -->
         <app-about-section />
 
-        <!-- 02 / Unsere Leistungen (6 Services) -->
+        <!-- 02 / Our Services (6 Core Services) -->
         <app-services-section (serviceSelected)="onServiceSelected($event)" />
 
-        <!-- 03 / Warum Allround -->
+        <!-- 03 / Why Allround -->
         <app-values-section />
 
-        <!-- 04 / Kontakt & Anfrageformular -->
+        <!-- 04 / Contact & Inquiry Form -->
         <app-contact-section [selectedServiceName]="selectedService()" />
       </main>
 

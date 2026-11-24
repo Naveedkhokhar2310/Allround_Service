@@ -1,7 +1,8 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { BUSINESS_PHONE, BUSINESS_LOCATION } from '@core/services/contact.service';
+import { TranslationService } from '@core/services/translation.service';
 
 @Component({
   selector: 'app-footer',
@@ -18,7 +19,7 @@ import { BUSINESS_PHONE, BUSINESS_LOCATION } from '@core/services/contact.servic
               <span class="logo-title">allround</span>
               <span class="logo-subtitle">Dienstleistung GbR</span>
             </div>
-            <p class="brand-tagline">Ein Ansprechpartner. Viele Lösungen.</p>
+            <p class="brand-tagline">{{ t().footer.tagline }}</p>
           </div>
 
           <!-- Company Details Column -->
@@ -30,8 +31,8 @@ import { BUSINESS_PHONE, BUSINESS_LOCATION } from '@core/services/contact.servic
 
           <!-- Back to Top Button -->
           <div class="footer-top-action">
-            <button type="button" class="back-to-top-btn" (click)="scrollToTop()" aria-label="Nach oben scrollen">
-              <span>Nach oben</span>
+            <button type="button" class="back-to-top-btn" (click)="scrollToTop()" [attr.aria-label]="t().footer.backToTop">
+              <span>{{ t().footer.backToTop }}</span>
               <span class="top-arrow">↑</span>
             </button>
           </div>
@@ -39,10 +40,10 @@ import { BUSINESS_PHONE, BUSINESS_LOCATION } from '@core/services/contact.servic
 
         <!-- Legal Bottom Row -->
         <div class="footer-bottom-row">
-          <p class="copyright-text">© Allround Dienstleistung GbR</p>
+          <p class="copyright-text">{{ t().footer.copyright }}</p>
           <div class="legal-links">
-            <a routerLink="/impressum" class="legal-link">Impressum</a>
-            <a routerLink="/datenschutz" class="legal-link">Datenschutz</a>
+            <a routerLink="/imprint" class="legal-link">{{ t().footer.imprint }}</a>
+            <a routerLink="/privacy" class="legal-link">{{ t().footer.privacy }}</a>
           </div>
         </div>
       </div>
@@ -205,6 +206,9 @@ import { BUSINESS_PHONE, BUSINESS_LOCATION } from '@core/services/contact.servic
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FooterComponent {
+  private readonly translationService = inject(TranslationService);
+  readonly t = this.translationService.t;
+
   readonly phone = BUSINESS_PHONE;
   readonly phoneClean = '+491739074381';
   readonly location = BUSINESS_LOCATION;

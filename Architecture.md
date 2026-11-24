@@ -58,7 +58,11 @@ src/
   - Independent routed views for `/impressum` and `/datenschutz`.
 
 ### 3. Data Flow & Service Layer
-- **Service Catalog**: Managed via an immutable, strongly-typed `ServicesCatalogService` supplying service descriptions, feature lists, pricing notes, and iconography.
+- **Multilingual / i18n Architecture**:
+  - `TranslationService` provides reactive, signal-based translation (`currentLang: Signal<LangCode>`, `t: Signal<TranslationSchema>`).
+  - Dictionaries (`de.ts`, `en.ts`) are strictly typed against `TranslationSchema`.
+  - In-place instant language switching with zero page reload, synchronized with `localStorage` and `document.documentElement.lang`.
+- **Service Catalog**: Managed via strongly-typed `ServicesCatalogService` combining the reactive translation schema with photography asset paths.
 - **Contact & Inquiry Handling**:
   - `ContactService` defines an abstract interface `IContactService`.
   - Initial implementation: `LocalContactService` (handles validation, client-side submission state, mailto / WhatsApp generation).

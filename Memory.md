@@ -47,9 +47,12 @@
 ### 4. Current Status
 - Phase 1 (Inspection & Git init), Phase 2 (Documentation & Figma design extraction), Phase 3 (Angular project initialization, assets, routing, design tokens), Phase 4 (Reusable UI components & animation directives), and Phase 5 (Homepage and all website sections implementation) are fully COMPLETED.
 - Bug Fix Applied: Fixed button text visibility by passing explicit `label` input signal to `ButtonComponent` (bypassing Angular's static `<ng-content>` drop inside conditional `@if` blocks) and ensuring `.allround-btn` class preservation.
-- Graphify removed: Added `graphify-out/` and `.agents/` to `.gitignore` per user request and cleaned up workspace.
+- Multilingual Support Implemented: Full reactive Signal-based translation engine (`TranslationService`, `de.ts`, `en.ts`, `i18n.types.ts`) with German (`DE`) and English (`EN`), language selector in `app-header`, and persistent `localStorage` preference.
+- SEO & Copywriting Optimization: Implemented comprehensive on-page SEO targeting high-intent local German search keywords (Weingarten, Ravensburg, Bodenseekreis), humanized copy without AI tells, Schema.org JSON-LD LocalBusiness structured data, robots.txt, and sitemap.xml.
+- Copy Refinement: Removed scattered phone number mentions from informational sections (About section) per user feedback and copy-editing best practices; phone contact is centralized cleanly in the Contact Us section and Footer.
+- English Codebase Standardization: Refactored all source code identifiers to English (HTML IDs: `#about`, `#services`, `#why-allround`, `#contact`; service IDs: `courier`, `clearance`, `moving`, `caretaker`, `cleaning`, `gardening`; routes: `/imprint`, `/privacy`; image assets; aria-labels; and comments), while keeping German and English customer-facing UI content separated cleanly in `de.ts` and `en.ts`.
 - The development server is currently running live on `http://localhost:4200/`.
-- All Figma sections (Header, Hero, Vertrauensleiste, Über uns, 6 Service Cards, Warum Allround, Kontakt form, Footer, Mobile floating bar) are live.
+- All Figma sections (Header, Hero, Vertrauensleiste, Über uns, 6 Service Cards, Warum Allround, Kontakt form, Footer, Mobile floating bar) are live and multilingual.
 - Ready for Phase 6: Navigation, interactions, and final QA refinements.
 
 ### 5. Open Questions / Items for User

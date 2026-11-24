@@ -1,6 +1,7 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ButtonComponent } from '@shared/components/button/button.component';
+import { TranslationService } from '@core/services/translation.service';
 
 @Component({
   selector: 'app-hero-section',
@@ -11,7 +12,7 @@ import { ButtonComponent } from '@shared/components/button/button.component';
       <!-- Background Image -->
       <div class="hero-bg-media">
         <img
-          src="/assets/images/haus-und-garten.png"
+          src="/assets/images/house-and-garden.png"
           alt="Haus und Gartenpflege Weingarten"
           class="hero-bg-img"
           fetchpriority="high"
@@ -24,48 +25,48 @@ import { ButtonComponent } from '@shared/components/button/button.component';
       <!-- Hero Content Container -->
       <div class="hero-container container-allround">
         <div class="hero-text-block">
-          <!-- Standort Badge -->
+          <!-- Location Badge -->
           <div class="hero-location-badge">
             <span class="location-dot">●</span>
-            <span class="location-text">IHR ALLROUND-SERVICE IN WEINGARTEN</span>
+            <span class="location-text">{{ t().hero.locationBadge }}</span>
           </div>
 
           <!-- Hero Headline -->
           <h1 class="hero-title">
-            <span>Ein Ansprechpartner.</span>
-            <span class="hero-title-accent">Viele Lösungen.</span>
+            <span>{{ t().hero.titleLine1 }}</span>
+            <span class="hero-title-accent">{{ t().hero.titleLine2 }}</span>
           </h1>
 
           <!-- Hero Subtitle -->
           <p class="hero-subtitle">
-            Ob Zuhause, unterwegs oder rund um Ihre Immobilie: Wir kümmern uns. Persönlich, unkompliziert und mit dem Blick fürs Ganze.
+            {{ t().hero.subtitle }}
           </p>
 
           <!-- Dual Hero CTAs -->
           <div class="hero-actions">
             <app-button
-              label="Unverbindlich anfragen"
+              [label]="t().hero.ctaPrimary"
               variant="primary"
               size="md"
               arrowDirection="right"
-              href="#kontakt"
+              href="#contact"
             />
 
             <app-button
-              label="Leistungen entdecken"
+              [label]="t().hero.ctaSecondary"
               variant="secondary"
               size="md"
               arrowDirection="right"
-              href="#leistungen"
+              href="#services"
             />
           </div>
         </div>
 
         <!-- Hero Footer Bar (from Figma node 5:144) -->
         <div class="hero-bottom-bar">
-          <p class="bottom-bar-text">Persönlich vor Ort. Mit Sorgfalt erledigt.</p>
-          <a href="#ueber-uns" class="bottom-bar-link">
-            <span>WEITER ENTDECKEN</span>
+          <p class="bottom-bar-text">{{ t().hero.bottomText }}</p>
+          <a href="#about" class="bottom-bar-link">
+            <span>{{ t().hero.discoverMore }}</span>
             <span class="arrow-down">↓</span>
           </a>
         </div>
@@ -233,4 +234,7 @@ import { ButtonComponent } from '@shared/components/button/button.component';
   `],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HeroSectionComponent {}
+export class HeroSectionComponent {
+  private readonly translationService = inject(TranslationService);
+  readonly t = this.translationService.t;
+}

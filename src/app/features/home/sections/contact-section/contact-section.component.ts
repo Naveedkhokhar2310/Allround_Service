@@ -5,6 +5,7 @@ import { BadgeComponent } from '@shared/components/badge/badge.component';
 import { ButtonComponent } from '@shared/components/button/button.component';
 import { ContactService, BUSINESS_PHONE, BUSINESS_LOCATION } from '@core/services/contact.service';
 import { ServicesCatalogService } from '@core/services/services-catalog.service';
+import { TranslationService } from '@core/services/translation.service';
 
 interface FormErrors {
   fullName?: string;
@@ -18,31 +19,31 @@ interface FormErrors {
   standalone: true,
   imports: [CommonModule, FormsModule, BadgeComponent, ButtonComponent],
   template: `
-    <section id="kontakt" class="contact-section" aria-label="Kontakt & Anfrage">
+    <section id="contact" class="contact-section" aria-label="Contact and inquiry">
       <div class="contact-container container-allround">
-        <!-- Contact Left Info Column (from Figma node 5:582) -->
+        <!-- Contact Left Info Column -->
         <div class="contact-info-col">
-          <app-badge variant="muted">04 / KONTAKT</app-badge>
+          <app-badge variant="muted">{{ t().contact.badge }}</app-badge>
 
           <h2 class="contact-title">
-            <span>Was können wir</span>
-            <span>für Sie tun?</span>
+            <span>{{ t().contact.titleLine1 }}</span>
+            <span>{{ t().contact.titleLine2 }}</span>
           </h2>
 
           <p class="contact-description">
-            Erzählen Sie uns, was ansteht. Gemeinsam finden wir die passende Lösung – unverbindlich und persönlich.
+            {{ t().contact.description }}
           </p>
 
           <div class="contact-phone-block">
             <a [href]="'tel:' + phoneClean" class="phone-link">
               {{ phone }}
             </a>
-            <p class="phone-subtext">Ein Anruf. Ein guter Anfang.</p>
+            <p class="phone-subtext">{{ t().contact.phoneSubtext }}</p>
           </div>
 
           <div class="whatsapp-btn-wrapper">
             <app-button
-              label="Per WhatsApp schreiben"
+              [label]="t().contact.whatsappBtn"
               variant="secondary"
               size="md"
               arrowDirection="right"
@@ -51,32 +52,32 @@ interface FormErrors {
             />
           </div>
 
-          <p class="contact-location">{{ location }}</p>
+          <p class="contact-location">{{ t().contact.location }}</p>
         </div>
 
-        <!-- Inquiry Form Right Column (from Figma node 5:592) -->
+        <!-- Inquiry Form Right Column -->
         <div class="contact-form-card">
-          <h3 class="form-title">Ihr Anliegen. Unser nächster Schritt.</h3>
+          <h3 class="form-title">{{ t().contact.formTitle }}</h3>
 
           @if (submissionState() === 'success') {
             <div class="alert-box alert-success animate-fade-in" role="alert">
               <span class="alert-icon">✓</span>
               <div>
-                <strong>Vielen Dank für Ihre Nachricht!</strong>
-                <p>Wir haben Ihr Anliegen erhalten und melden uns in Kürze persönlich bei Ihnen.</p>
+                <strong>{{ t().contact.successTitle }}</strong>
+                <p>{{ t().contact.successDesc }}</p>
               </div>
             </div>
           } @else {
             <form (ngSubmit)="onSubmit()" class="inquiry-form" novalidate>
               <!-- Name Field -->
               <div class="form-group">
-                <label for="fullName" class="form-label">Ihr Name *</label>
+                <label for="fullName" class="form-label">{{ t().contact.nameLabel }}</label>
                 <input
                   id="fullName"
                   type="text"
                   name="fullName"
                   [(ngModel)]="formData.fullName"
-                  placeholder="Vor- und Nachname"
+                  [placeholder]="t().contact.namePlaceholder"
                   class="form-input"
                   [class.has-error]="validationErrors().fullName"
                   required
@@ -89,13 +90,13 @@ interface FormErrors {
               <!-- Contact Row: Email & Phone -->
               <div class="form-row">
                 <div class="form-group">
-                  <label for="email" class="form-label">E-Mail *</label>
+                  <label for="email" class="form-label">{{ t().contact.emailLabel }}</label>
                   <input
                     id="email"
                     type="email"
                     name="email"
                     [(ngModel)]="formData.email"
-                    placeholder="name@beispiel.de"
+                    [placeholder]="t().contact.emailPlaceholder"
                     class="form-input"
                     [class.has-error]="validationErrors().email"
                     required
@@ -106,13 +107,13 @@ interface FormErrors {
                 </div>
 
                 <div class="form-group">
-                  <label for="phone" class="form-label">Telefon (optional)</label>
+                  <label for="phone" class="form-label">{{ t().contact.phoneLabel }}</label>
                   <input
                     id="phone"
                     type="tel"
                     name="phone"
                     [(ngModel)]="formData.phone"
-                    placeholder="Ihre Telefonnummer"
+                    [placeholder]="t().contact.phonePlaceholder"
                     class="form-input"
                   />
                 </div>
@@ -120,7 +121,7 @@ interface FormErrors {
 
               <!-- Service Selection Dropdown -->
               <div class="form-group">
-                <label for="serviceId" class="form-label">Wobei dürfen wir helfen?</label>
+                <label for="serviceId" class="form-label">{{ t().contact.serviceLabel }}</label>
                 <div class="select-wrapper">
                   <select
                     id="serviceId"
@@ -128,24 +129,24 @@ interface FormErrors {
                     [(ngModel)]="formData.serviceId"
                     class="form-select"
                   >
-                    <option value="" disabled selected>Leistung auswählen ↓</option>
+                    <option value="" disabled selected>{{ t().contact.serviceDefaultOption }}</option>
                     @for (s of services(); track s.id) {
                       <option [value]="s.title">{{ s.title }}</option>
                     }
-                    <option value="Sonstiges Anliegen">Sonstiges Anliegen</option>
+                    <option [value]="t().contact.otherServiceOption">{{ t().contact.otherServiceOption }}</option>
                   </select>
                 </div>
               </div>
 
               <!-- Message Field -->
               <div class="form-group">
-                <label for="message" class="form-label">Ihre Nachricht *</label>
+                <label for="message" class="form-label">{{ t().contact.messageLabel }}</label>
                 <textarea
                   id="message"
                   name="message"
                   [(ngModel)]="formData.message"
                   rows="4"
-                  placeholder="Beschreiben Sie kurz Ihr Anliegen …"
+                  [placeholder]="t().contact.messagePlaceholder"
                   class="form-textarea"
                   [class.has-error]="validationErrors().message"
                   required
@@ -155,7 +156,7 @@ interface FormErrors {
                 }
               </div>
 
-              <!-- GDPR Consent Checkbox (Figma node 5:615) -->
+              <!-- GDPR Consent Checkbox -->
               <div class="form-checkbox-group">
                 <label class="checkbox-container">
                   <input
@@ -167,7 +168,7 @@ interface FormErrors {
                   />
                   <span class="checkbox-custom"></span>
                   <span class="checkbox-label">
-                    Ich habe die Datenschutzhinweise gelesen und bin mit der Kontaktaufnahme einverstanden. *
+                    {{ t().contact.consentText }}
                   </span>
                 </label>
                 @if (validationErrors().consent) {
@@ -181,11 +182,11 @@ interface FormErrors {
                 class="form-submit-btn"
                 [disabled]="isSubmitting()"
               >
-                <span>{{ isSubmitting() ? 'Wird gesendet …' : 'Anfrage senden' }}</span>
+                <span>{{ isSubmitting() ? t().contact.submittingBtn : t().contact.submitBtn }}</span>
                 <span class="btn-arrow">→</span>
               </button>
 
-              <p class="form-footnote">* Pflichtfelder · Ihre Daten behandeln wir vertraulich.</p>
+              <p class="form-footnote">{{ t().contact.footnote }}</p>
             </form>
           }
         </div>
@@ -215,7 +216,6 @@ interface FormErrors {
       }
     }
 
-    // Left info column
     .contact-info-col {
       display: flex;
       flex-direction: column;
@@ -278,7 +278,6 @@ interface FormErrors {
       }
     }
 
-    // Right form card (from Figma node 5:592)
     .contact-form-card {
       background-color: var(--color-mist);
       padding: clamp(24px, 4vw, 32px);
@@ -495,13 +494,14 @@ interface FormErrors {
 export class ContactSectionComponent {
   private readonly contactService = inject(ContactService);
   private readonly catalogService = inject(ServicesCatalogService);
+  private readonly translationService = inject(TranslationService);
 
+  readonly t = this.translationService.t;
   readonly selectedServiceName = input<string>('');
   readonly services = this.catalogService.services;
 
   readonly phone = BUSINESS_PHONE;
   readonly phoneClean = '+491739074381';
-  readonly location = BUSINESS_LOCATION;
   readonly whatsappUrl = this.contactService.getWhatsAppUrl();
 
   formData = {
@@ -518,22 +518,23 @@ export class ContactSectionComponent {
   submissionState = signal<'idle' | 'success' | 'error'>('idle');
 
   validateForm(): boolean {
-    const errors: Record<string, string> = {};
+    const errors: FormErrors = {};
+    const errorMessages = this.t().contact.errors;
 
     if (!this.formData.fullName.trim()) {
-      errors['fullName'] = 'Bitte geben Sie Ihren Vor- und Nachnamen ein.';
+      errors.fullName = errorMessages.fullName;
     }
 
     if (!this.formData.email.trim() || !/^\S+@\S+\.\S+$/.test(this.formData.email)) {
-      errors['email'] = 'Bitte geben Sie eine gültige E-Mail-Adresse ein.';
+      errors.email = errorMessages.email;
     }
 
     if (!this.formData.message.trim()) {
-      errors['message'] = 'Bitte beschreiben Sie kurz Ihr Anliegen.';
+      errors.message = errorMessages.message;
     }
 
     if (!this.formData.consent) {
-      errors['consent'] = 'Bitte stimmen Sie den Datenschutzhinweisen zu.';
+      errors.consent = errorMessages.consent;
     }
 
     this.validationErrors.set(errors);
