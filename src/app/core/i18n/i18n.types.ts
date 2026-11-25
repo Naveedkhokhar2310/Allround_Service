@@ -46,9 +46,6 @@ export interface TranslationSchema {
     badge: string;
     titleLine1: string;
     titleLine2: string;
-    descLine1: string;
-    descLine2: string;
-    descLine3: string;
     items: ServiceTranslation[];
   };
   whyUs: {
@@ -69,6 +66,13 @@ export interface TranslationSchema {
     titleLine1: string;
     titleLine2: string;
     description: string;
+    trustTitle: string;
+    trust1Title: string;
+    trust1Desc: string;
+    trust2Title: string;
+    trust2Desc: string;
+    trust3Title: string;
+    trust3Desc: string;
     phoneSubtext: string;
     whatsappBtn: string;
     location: string;
@@ -99,6 +103,8 @@ export interface TranslationSchema {
   };
   footer: {
     tagline: string;
+    servicesTitle: string;
+    contactTitle: string;
     backToTop: string;
     copyright: string;
     imprint: string;

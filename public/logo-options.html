@@ -1,545 +1,354 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Allround Dienstleistung GbR — Professionelle Markenlogos & Identitätskonzepte</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <title>Allround Dienstleistung GbR — Werkzeug & Handwerk Logo Optionen</title>
   <style>
-    :root {
-      --navy: #10283D;
-      --navy-dark: #0A1B2A;
-      --navy-light: #163752;
-      --green: #83C99A;
-      --green-dark: #5FA879;
-      --mist: #F3F6F4;
-      --border: #DAE2DE;
-      --muted: #5C6D77;
-      --white: #FFFFFF;
-      --font: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
-      --font-mono: 'JetBrains Mono', monospace;
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
     body {
-      font-family: var(--font);
-      background: var(--mist);
-      color: var(--navy);
-      padding: 64px 24px 100px;
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: #F3F6F4;
+      color: #10283D;
+      padding: 48px 24px;
+      line-height: 1.5;
     }
 
     .container {
-      max-width: 1200px;
+      max-width: 1080px;
       margin: 0 auto;
     }
 
-    /* Header */
-    .header {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 24px;
-      padding: 48px;
-      margin-bottom: 48px;
-      box-shadow: 0 4px 20px rgba(16, 40, 61, 0.04);
-    }
-
-    .badge-pill {
-      display: inline-block;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      color: var(--green-dark);
-      background: rgba(131, 201, 154, 0.15);
-      padding: 6px 14px;
-      border-radius: 100px;
-      margin-bottom: 16px;
-    }
-
     h1 {
-      font-size: 36px;
-      font-weight: 800;
-      letter-spacing: -1px;
-      color: var(--navy);
-      line-height: 1.2;
-      margin-bottom: 12px;
+      font-size: 28px;
+      margin-bottom: 8px;
+      color: #10283D;
     }
 
     .subtitle {
-      font-size: 16px;
-      color: var(--muted);
-      max-width: 860px;
-      margin-bottom: 24px;
+      font-size: 15px;
+      color: #5C6D77;
+      margin-bottom: 40px;
     }
 
-    .design-principles {
+    .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 16px;
-      padding-top: 24px;
-      border-top: 1px solid var(--border);
+      grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
+      gap: 28px;
     }
 
-    .principle-item {
-      font-size: 13px;
-    }
-    .principle-title {
-      font-weight: 700;
-      color: var(--navy);
-      display: block;
-      margin-bottom: 4px;
-    }
-    .principle-desc {
-      color: var(--muted);
-      line-height: 1.4;
+    .card {
+      background: #FFFFFF;
+      border: 1px solid #DAE2DE;
+      border-radius: 16px;
+      padding: 28px;
+      box-shadow: 0 2px 8px rgba(16, 40, 61, 0.04);
     }
 
-    /* Concepts Grid */
-    .concepts-stack {
-      display: flex;
-      flex-direction: column;
-      gap: 48px;
-    }
-
-    .concept-card {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 24px;
-      padding: 40px;
-      box-shadow: 0 4px 24px rgba(16, 40, 61, 0.04);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .concept-card:hover {
-      box-shadow: 0 8px 32px rgba(16, 40, 61, 0.08);
-    }
-
-    .card-top {
+    .card-header {
       display: flex;
       justify-content: space-between;
-      align-items: flex-start;
-      margin-bottom: 28px;
-      flex-wrap: wrap;
-      gap: 16px;
+      align-items: baseline;
+      margin-bottom: 20px;
     }
 
-    .concept-number {
+    .card-badge {
       font-size: 12px;
-      font-weight: 800;
-      letter-spacing: 2px;
-      color: var(--green-dark);
-      margin-bottom: 4px;
+      font-weight: 700;
+      color: #5FA879;
+      letter-spacing: 1px;
     }
 
-    .concept-title {
-      font-size: 24px;
-      font-weight: 800;
-      color: var(--navy);
-      letter-spacing: -0.5px;
-    }
-
-    .concept-tagline {
-      font-size: 14px;
-      color: var(--muted);
-      margin-top: 2px;
-    }
-
-    /* Showcase Layout */
-    .showcase-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-      margin-bottom: 24px;
-    }
-
-    @media (max-width: 860px) {
-      .showcase-row { grid-template-columns: 1fr; }
+    .card-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: #10283D;
+      margin-top: 4px;
     }
 
     .preview-box {
-      border-radius: 16px;
-      padding: 32px;
+      border-radius: 12px;
+      padding: 24px;
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
-      min-height: 140px;
-      position: relative;
+      margin-bottom: 12px;
     }
 
     .preview-light {
       background: #FFFFFF;
-      border: 1px solid var(--border);
+      border: 1px solid #DAE2DE;
     }
 
     .preview-dark {
-      background: var(--navy);
-      border: 1px solid rgba(255, 255, 255, 0.06);
+      background: #10283D;
     }
 
-    .preview-label {
-      position: absolute;
-      top: 12px;
-      left: 16px;
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      opacity: 0.6;
-    }
-    .preview-light .preview-label { color: var(--muted); }
-    .preview-dark .preview-label { color: var(--green); }
-
-    /* Mockups Bar */
-    .mockups-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 16px;
-      margin-top: 24px;
-      padding-top: 24px;
-      border-top: 1px solid var(--border);
+    .explanation {
+      margin-top: 16px;
+      font-size: 13px;
+      color: #5C6D77;
     }
 
-    @media (max-width: 900px) {
-      .mockups-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-
-    .mockup-item {
-      background: var(--mist);
-      border-radius: 12px;
-      padding: 16px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      gap: 8px;
-    }
-
-    .mockup-item.dark {
-      background: var(--navy-dark);
-      color: var(--white);
-    }
-
-    .mockup-label {
-      font-size: 11px;
-      font-weight: 700;
-      color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-    .mockup-item.dark .mockup-label { color: rgba(255, 255, 255, 0.6); }
-
-    .rationale {
-      margin-top: 24px;
-      background: #FAFCFA;
-      border: 1px solid rgba(131, 201, 154, 0.3);
-      border-radius: 14px;
-      padding: 20px 24px;
-      font-size: 13.5px;
-      color: #2D404C;
-    }
-
-    .rationale strong {
-      color: var(--navy);
-      display: block;
-      margin-bottom: 6px;
-      font-size: 14px;
-    }
-
-    .rationale ul {
+    .explanation ul {
       margin-left: 20px;
-      margin-top: 6px;
+      margin-top: 8px;
     }
 
-    .rationale li {
+    .explanation li {
       margin-bottom: 4px;
-    }
-
-    /* Vote / Action */
-    .action-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 12px;
-      font-weight: 700;
-      color: var(--navy);
-      background: rgba(16, 40, 61, 0.05);
-      padding: 8px 16px;
-      border-radius: 8px;
-      border: 1px solid var(--border);
     }
   </style>
 </head>
+
 <body>
-
   <div class="container">
+    <h1>Allround Dienstleistung GbR — Werkzeug- & Handwerk-Logos</h1>
+    <p class="subtitle">Klarer Fokus auf Handwerk, Hausmeisterservice & Montage mit echtem Werkzeug-Symbol
+      (Schraubenschlüssel / Spanner) im Allround-Farbschema (#10283D Navy & #83C99A Salbeigrün).</p>
 
-    <!-- Top Executive Header -->
-    <div class="header">
-      <span class="badge-pill">CORPORATE BRAND DESIGN SYSTEM</span>
-      <h1>Allround Dienstleistung GbR · Markenidentität</h1>
-      <p class="subtitle">
-        Design-Entwicklung nach den klassischen Prinzipien des modernen deutschen Handwerks- & Industrie-Designs:
-        Geometrische Präzision, Reduktion auf wesentliche Erkennungsmerkmale, harmonische Linienführung und universelle Skalierbarkeit (vom 16px Favicon bis zum Transporter-Großdruck).
-      </p>
+    <div class="grid">
 
-      <div class="design-principles">
-        <div class="principle-item">
-          <span class="principle-title">1. Form folgt Funktion</span>
-          <span class="principle-desc">Keine verspielten Cliparts, sondern klare Vektorgeometrie mit eindeutigem Handwerksbezug.</span>
-        </div>
-        <div class="principle-item">
-          <span class="principle-title">2. 60° & 90° Konstruktionsraster</span>
-          <span class="principle-desc">Symmetrie und gleichmäßige Strichstärken im Einklang mit der Wortmarke Manrope Bold.</span>
-        </div>
-        <div class="principle-item">
-          <span class="principle-title">3. Authentisches Farbschema</span>
-          <span class="principle-desc">#10283D Allround Navy (Solidität & Vertrauen) und #83C99A Salbeigrün (Präzision & Frische).</span>
-        </div>
-        <div class="principle-item">
-          <span class="principle-title">4. Freigabe-Workflow</span>
-          <span class="principle-desc">Erst visuell prüfen & entscheiden, danach erfolgt die nahtlose Einbindung in die Website.</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- The 3 Professional Concepts Stack -->
-    <div class="concepts-stack">
-
-      <!-- ========================================== -->
-      <!-- CONCEPT 1: DAS PRÄZISIONS-MONOGRAMM 'A' -->
-      <!-- ========================================== -->
-      <div class="concept-card">
-        <div class="card-top">
+      <!-- OPTION A: HAUSDACH & DIAGONALER SCHLÜSSEL (EMPFOHLEN) -->
+      <div class="card">
+        <div class="card-header">
           <div>
-            <div class="concept-number">KONZEPT 01 · MONOGRAMM-FUSION (EMPFOHLEN)</div>
-            <div class="concept-title">Das Präzisions-Monogramm „A“ (Allround & Werkzeugkopf)</div>
-            <div class="concept-tagline">Architektonisches Dach & integriertes Werkzeug-Maß im 60°-Winkel</div>
+            <span class="card-badge">OPTION A (EMPFOHLEN)</span>
+            <div class="card-title">Hausdach & Handwerker-Schlüssel (Freigestellt)</div>
           </div>
-          <div class="action-badge">⭐ Ideal für Corporate Identity & Fahrzeugbeschriftung</div>
         </div>
 
-        <div class="showcase-row">
+        <div class="preview-box preview-light">
           <!-- Light Version -->
-          <div class="preview-box preview-light">
-            <span class="preview-label">HELLER HINTERGRUND (WEBSITE HEADER / BRIEFKOPF)</span>
-            <svg width="240" height="48" viewBox="0 0 240 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <!-- Icon Mark: 44x44 Geometric Monogram -->
-              <g transform="translate(2, 2)">
-                <!-- Left Strut (Navy): Solid architectural pillar -->
-                <path d="M6 38L18 10H22L10 38H6Z" fill="#10283D"/>
-                <!-- Precision Crossbar forming the tool foundation -->
-                <path d="M11 28H29V32H11V28Z" fill="#10283D"/>
-                <!-- Right Strut & Integrated Open Wrench Apex (Sage Green) -->
-                <path d="M38 38L26 10H22L34 38H38Z" fill="#83C99A"/>
-                <!-- Top Precision Spanner / Caliper Profile -->
-                <path d="M22 6C18.5 6 15.5 8.8 15.5 12.3C15.5 14 16.2 15.6 17.3 16.8L22 13.5L26.7 16.8C27.8 15.6 28.5 14 28.5 12.3C28.5 8.8 25.5 6 22 6Z" fill="#83C99A"/>
-                <circle cx="22" cy="12.5" r="2.2" fill="#10283D"/>
-              </g>
-              <!-- Typography -->
-              <text x="56" y="27" font-family="'Manrope', sans-serif" font-size="25" font-weight="800" letter-spacing="-0.5" fill="#10283D">allround</text>
-              <text x="57" y="39" font-family="'Manrope', sans-serif" font-size="8.5" font-weight="700" letter-spacing="2" fill="#5C6D77">DIENSTLEISTUNG GbR</text>
-            </svg>
-          </div>
+          <svg width="220" height="44" viewBox="0 0 220 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g transform="translate(4, 2)">
+              <!-- Clean House Gable in Navy -->
+              <path d="M4 22L18 9L32 22" stroke="#10283D" stroke-width="3" stroke-linecap="round"
+                stroke-linejoin="round" />
+              <path d="M7 22V36H29V22" stroke="#10283D" stroke-width="2.5" stroke-linecap="round"
+                stroke-linejoin="round" />
+              <path d="M24 14.5V11H28V18" stroke="#10283D" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
+              <!-- Diagonal Wrench in Sage Green -->
+              <path d="M10 33L21 20" stroke="#83C99A" stroke-width="3.5" stroke-linecap="round" />
+              <!-- Wrench Jaw Head -->
+              <path d="M19.5 22L20.8 23.3C22 24.5 23.8 24.5 25 23.3L25.8 22.5C27 21.3 27 19.5 25.8 18.3L24.5 17"
+                stroke="#83C99A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" />
+              <circle cx="10" cy="33" r="1.5" fill="#83C99A" />
+            </g>
+            <text x="52" y="25" font-family="'Segoe UI', sans-serif" font-size="24" font-weight="700"
+              letter-spacing="-0.4" fill="#10283D">allround</text>
+            <text x="53" y="37" font-family="'Segoe UI', sans-serif" font-size="8.5" font-weight="700"
+              letter-spacing="1.6" fill="#5C6D77">DIENSTLEISTUNG GbR</text>
+          </svg>
+        </div>
 
+        <div class="preview-box preview-dark">
           <!-- Dark Version -->
-          <div class="preview-box preview-dark">
-            <span class="preview-label">DUNKLER HINTERGRUND (FOOTER / HERO / ARBEITSKLEIDUNG)</span>
-            <svg width="240" height="48" viewBox="0 0 240 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <g transform="translate(2, 2)">
-                <path d="M6 38L18 10H22L10 38H6Z" fill="#FFFFFF"/>
-                <path d="M11 28H29V32H11V28Z" fill="#FFFFFF"/>
-                <path d="M38 38L26 10H22L34 38H38Z" fill="#83C99A"/>
-                <path d="M22 6C18.5 6 15.5 8.8 15.5 12.3C15.5 14 16.2 15.6 17.3 16.8L22 13.5L26.7 16.8C27.8 15.6 28.5 14 28.5 12.3C28.5 8.8 25.5 6 22 6Z" fill="#83C99A"/>
-                <circle cx="22" cy="12.5" r="2.2" fill="#10283D"/>
-              </g>
-              <text x="56" y="27" font-family="'Manrope', sans-serif" font-size="25" font-weight="800" letter-spacing="-0.5" fill="#FFFFFF">allround</text>
-              <text x="57" y="39" font-family="'Manrope', sans-serif" font-size="8.5" font-weight="700" letter-spacing="2" fill="#83C99A">DIENSTLEISTUNG GbR</text>
-            </svg>
-          </div>
+          <svg width="220" height="44" viewBox="0 0 220 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g transform="translate(4, 2)">
+              <path d="M4 22L18 9L32 22" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round"
+                stroke-linejoin="round" />
+              <path d="M7 22V36H29V22" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round"
+                stroke-linejoin="round" />
+              <path d="M24 14.5V11H28V18" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
+              <path d="M10 33L21 20" stroke="#83C99A" stroke-width="3.5" stroke-linecap="round" />
+              <path d="M19.5 22L20.8 23.3C22 24.5 23.8 24.5 25 23.3L25.8 22.5C27 21.3 27 19.5 25.8 18.3L24.5 17"
+                stroke="#83C99A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" />
+              <circle cx="10" cy="33" r="1.5" fill="#83C99A" />
+            </g>
+            <text x="52" y="25" font-family="'Segoe UI', sans-serif" font-size="24" font-weight="700"
+              letter-spacing="-0.4" fill="#FFFFFF">allround</text>
+            <text x="53" y="37" font-family="'Segoe UI', sans-serif" font-size="8.5" font-weight="700"
+              letter-spacing="1.6" fill="#83C99A">DIENSTLEISTUNG GbR</text>
+          </svg>
         </div>
 
-        <!-- Scale & Context Mockups -->
-        <div class="mockups-grid">
-          <div class="mockup-item">
-            <span class="mockup-label">Favicon (32x32)</span>
-            <svg width="32" height="32" viewBox="0 0 44 44" fill="none">
-              <rect width="44" height="44" rx="10" fill="#10283D"/>
-              <path d="M8 36L18 12H21L12 36H8Z" fill="#FFFFFF"/>
-              <path d="M36 36L26 12H23L32 36H36Z" fill="#83C99A"/>
-              <path d="M22 8C19 8 16.5 10.5 16.5 13.5L22 14.5L27.5 13.5C27.5 10.5 25 8 22 8Z" fill="#83C99A"/>
-            </svg>
-          </div>
-
-          <div class="mockup-item">
-            <span class="mockup-label">1-Farbig Schwarz (Print)</span>
-            <svg width="32" height="32" viewBox="0 0 44 44" fill="none">
-              <path d="M6 38L18 10H22L10 38H6Z" fill="#000000"/>
-              <path d="M11 28H29V32H11V28Z" fill="#000000"/>
-              <path d="M38 38L26 10H22L34 38H38Z" fill="#000000"/>
-              <path d="M22 6C18.5 6 15.5 8.8 15.5 12.3L22 13.5L28.5 12.3C28.5 8.8 25.5 6 22 6Z" fill="#000000"/>
-            </svg>
-          </div>
-
-          <div class="mockup-item dark">
-            <span class="mockup-label">Polo-Stickerei</span>
-            <svg width="36" height="36" viewBox="0 0 44 44" fill="none">
-              <path d="M6 38L18 10H22L10 38H6Z" fill="#FFFFFF"/>
-              <path d="M11 28H29V32H11V28Z" fill="#FFFFFF"/>
-              <path d="M38 38L26 10H22L34 38H38Z" fill="#83C99A"/>
-            </svg>
-          </div>
-
-          <div class="mockup-item">
-            <span class="mockup-label">Transporter-Beklebung</span>
-            <div style="font-size: 11px; font-weight: 700; color: #10283D; margin-top: 4px;">
-              HOHE FERNWIRKUNG<br><span style="color: #5C6D77; font-weight: 500;">Aus 50m lesbar</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="rationale">
-          <strong>Design-Begründung nach Markenprinzipien:</strong>
+        <div class="explanation">
+          <strong>Warum besonders wirksam:</strong>
           <ul>
-            <li><strong>Intelligente Monogramm-Fusion:</strong> Das Logo ist keine wahllose Ansammlung von Werkzeugen, sondern eine konstruierte Synthese: Das markante „A“ für <em>Allround</em> fungiert gleichzeitig als schützendes Hausdach und als massiver, präziser Schraubenschlüssel-Kopf.</li>
-            <li><strong>Harmonische Strichstärken:</strong> Die Schenkelbreite des Symbols entspricht exakt der Stammstärke des Schriftzugs „allround“. Dadurch entsteht eine vollkommen ruhige, professionelle Gesamtkomposition.</li>
-            <li><strong>Zeitersparnis & Zeitlosigkeit:</strong> Diese Art von Monogramm altert nicht und genießt denselben Premium-Charakter wie Bosch, Festool oder Hilti.</li>
+            <li><strong>Haus:</strong> Zeigt sofort den Bezug zu Immobilien, Facility Management und Wohnungen.</li>
+            <li><strong>Schraubenschlüssel (Spanner):</strong> Sofort erkennbar als Werkzeug für Reparatur, Montage &
+              Hausmeisterservice.</li>
+            <li>Freigestellt und minimalistisch – wirkt seriös, solide und unaufdringlich.</li>
           </ul>
         </div>
       </div>
 
-
-      <!-- ========================================== -->
-      <!-- CONCEPT 2: DAS GEOMETRISCHE SECHSKANT-SIEGEL -->
-      <!-- ========================================== -->
-      <div class="concept-card">
-        <div class="card-top">
+      <!-- OPTION B: DAS WERKZEUG-WAPPEN (BADGE) -->
+      <div class="card">
+        <div class="card-header">
           <div>
-            <div class="concept-number">KONZEPT 02 · DEUTSCHES WERKBUND-DESIGN</div>
-            <div class="concept-title">Das Sechskant-Meistersiegel (Hexagon & Schraubenschlüssel)</div>
-            <div class="concept-tagline">Industrielle Schraubenmutter mit integriertem Werkzeug- & Giebelprofil</div>
-          </div>
-          <div class="action-badge">🔧 Fokus: Handwerk, Montage & Hausmeisterservice</div>
-        </div>
-
-        <div class="showcase-row">
-          <div class="preview-box preview-light">
-            <span class="preview-label">HELLER HINTERGRUND</span>
-            <svg width="240" height="48" viewBox="0 0 240 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <g transform="translate(2, 2)">
-                <!-- Hexagon Outer Outline (Navy) -->
-                <path d="M22 5L36 13V29L22 37L8 29V13L22 5Z" stroke="#10283D" stroke-width="3.5" stroke-linejoin="round"/>
-                <!-- Internal Gable Roof & Precision Open Wrench Profile in Sage Green -->
-                <path d="M14 26L22 17L30 26" stroke="#83C99A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                <!-- Wrench center stem & jaw -->
-                <path d="M22 17V31" stroke="#83C99A" stroke-width="3.5" stroke-linecap="round"/>
-                <circle cx="22" cy="12" r="2.5" fill="#10283D"/>
-              </g>
-              <text x="56" y="27" font-family="'Manrope', sans-serif" font-size="25" font-weight="800" letter-spacing="-0.5" fill="#10283D">allround</text>
-              <text x="57" y="39" font-family="'Manrope', sans-serif" font-size="8.5" font-weight="700" letter-spacing="2" fill="#5C6D77">DIENSTLEISTUNG GbR</text>
-            </svg>
-          </div>
-
-          <div class="preview-box preview-dark">
-            <span class="preview-label">DUNKLER HINTERGRUND</span>
-            <svg width="240" height="48" viewBox="0 0 240 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <g transform="translate(2, 2)">
-                <path d="M22 5L36 13V29L22 37L8 29V13L22 5Z" stroke="#FFFFFF" stroke-width="3.5" stroke-linejoin="round"/>
-                <path d="M14 26L22 17L30 26" stroke="#83C99A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M22 17V31" stroke="#83C99A" stroke-width="3.5" stroke-linecap="round"/>
-                <circle cx="22" cy="12" r="2.5" fill="#FFFFFF"/>
-              </g>
-              <text x="56" y="27" font-family="'Manrope', sans-serif" font-size="25" font-weight="800" letter-spacing="-0.5" fill="#FFFFFF">allround</text>
-              <text x="57" y="39" font-family="'Manrope', sans-serif" font-size="8.5" font-weight="700" letter-spacing="2" fill="#83C99A">DIENSTLEISTUNG GbR</text>
-            </svg>
+            <span class="card-badge">OPTION B</span>
+            <div class="card-title">Das Handwerker-Wappen (Kompaktes Badge)</div>
           </div>
         </div>
 
-        <div class="rationale">
-          <strong>Design-Begründung nach Markenprinzipien:</strong>
+        <div class="preview-box preview-light">
+          <svg width="220" height="44" viewBox="0 0 220 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g transform="translate(2, 2)">
+              <rect width="40" height="40" rx="10" fill="#10283D" />
+              <!-- White House Gable -->
+              <path d="M8 22L20 11L32 22" stroke="#FFFFFF" stroke-width="2.6" stroke-linecap="round"
+                stroke-linejoin="round" />
+              <path d="M25 15V12H29V18" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round"
+                stroke-linejoin="round" />
+              <!-- Sage Green Wrench -->
+              <path d="M12 31L22 19" stroke="#83C99A" stroke-width="3.2" stroke-linecap="round" />
+              <path d="M21 21L22.2 22.2C23.2 23.2 24.8 23.2 25.8 22.2L26.5 21.5C27.5 20.5 27.5 18.9 26.5 17.9L25.3 16.7"
+                stroke="#83C99A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" />
+            </g>
+            <text x="52" y="25" font-family="'Segoe UI', sans-serif" font-size="24" font-weight="700"
+              letter-spacing="-0.4" fill="#10283D">allround</text>
+            <text x="53" y="37" font-family="'Segoe UI', sans-serif" font-size="8.5" font-weight="700"
+              letter-spacing="1.6" fill="#5C6D77">DIENSTLEISTUNG GbR</text>
+          </svg>
+        </div>
+
+        <div class="preview-box preview-dark">
+          <svg width="220" height="44" viewBox="0 0 220 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g transform="translate(2, 2)">
+              <rect width="40" height="40" rx="10" fill="#163752" />
+              <path d="M8 22L20 11L32 22" stroke="#FFFFFF" stroke-width="2.6" stroke-linecap="round"
+                stroke-linejoin="round" />
+              <path d="M25 15V12H29V18" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round"
+                stroke-linejoin="round" />
+              <path d="M12 31L22 19" stroke="#83C99A" stroke-width="3.2" stroke-linecap="round" />
+              <path d="M21 21L22.2 22.2C23.2 23.2 24.8 23.2 25.8 22.2L26.5 21.5C27.5 20.5 27.5 18.9 26.5 17.9L25.3 16.7"
+                stroke="#83C99A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" />
+            </g>
+            <text x="52" y="25" font-family="'Segoe UI', sans-serif" font-size="24" font-weight="700"
+              letter-spacing="-0.4" fill="#FFFFFF">allround</text>
+            <text x="53" y="37" font-family="'Segoe UI', sans-serif" font-size="8.5" font-weight="700"
+              letter-spacing="1.6" fill="#83C99A">DIENSTLEISTUNG GbR</text>
+          </svg>
+        </div>
+
+        <div class="explanation">
+          <strong>Warum besonders wirksam:</strong>
           <ul>
-            <li><strong>Universales Mechanik-Symbol:</strong> Das Sechseck (Hexagon) ist in der gesamten Technik- und Montagebranche die universelle Form für Schrauben, Muttern und solide Verbindungstechnik.</li>
-            <li><strong>Souveräne Geometrie:</strong> Durch die 30°/60° Isometrie wirkt die Marke robust, standsicher und kompromisslos verlässlich.</li>
+            <li>Perfekt für App-Icons, Favicon (16x16 / 32x32), Social Media Avatare und Arbeitskleidung.</li>
+            <li>Solider Navy-Hintergrund verleiht Hochwertigkeit und Struktur.</li>
           </ul>
         </div>
       </div>
 
-
-      <!-- ========================================== -->
-      <!-- CONCEPT 3: DER 360° ALLROUND-WERKZEUGRING -->
-      <!-- ========================================== -->
-      <div class="concept-card">
-        <div class="card-top">
+      <!-- OPTION C: GEKREUZTE WERKZEUGE (SCHLÜSSEL & HAMMER) -->
+      <div class="card">
+        <div class="card-header">
           <div>
-            <div class="concept-number">KONZEPT 03 · DYNAMISCHE 360°-RUNDUMBETREUUNG</div>
-            <div class="concept-title">Der 360° Allround-Werkzeugring</div>
-            <div class="concept-tagline">Dynamischer Kreisring mit integriertem Maulschlüssel & Dachgiebel</div>
-          </div>
-          <div class="action-badge">🔄 Fokus: Schnelligkeit, Allround-Vielseitigkeit & Service</div>
-        </div>
-
-        <div class="showcase-row">
-          <div class="preview-box preview-light">
-            <span class="preview-label">HELLER HINTERGRUND</span>
-            <svg width="240" height="48" viewBox="0 0 240 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <g transform="translate(2, 2)">
-                <!-- Circular 360 ribbon loop in Navy -->
-                <path d="M22 6C13.2 6 6 13.2 6 22C6 30.8 13.2 38 22 38C30.8 38 38 30.8 38 22" stroke="#10283D" stroke-width="3.5" stroke-linecap="round"/>
-                <!-- Wrench Head Terminal in Sage Green at the top-right -->
-                <path d="M38 22C38 18.5 36.5 15.5 34 13L35.5 11.5C36.8 10.2 38.8 10.2 40.1 11.5L41 12.4C42.3 13.7 42.3 15.7 41 17L38 20" stroke="#83C99A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                <!-- Clean Center Roof Chevron (Facility & House) -->
-                <path d="M14 24L22 16L30 24" stroke="#83C99A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-              </g>
-              <text x="56" y="27" font-family="'Manrope', sans-serif" font-size="25" font-weight="800" letter-spacing="-0.5" fill="#10283D">allround</text>
-              <text x="57" y="39" font-family="'Manrope', sans-serif" font-size="8.5" font-weight="700" letter-spacing="2" fill="#5C6D77">DIENSTLEISTUNG GbR</text>
-            </svg>
-          </div>
-
-          <div class="preview-box preview-dark">
-            <span class="preview-label">DUNKLER HINTERGRUND</span>
-            <svg width="240" height="48" viewBox="0 0 240 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <g transform="translate(2, 2)">
-                <path d="M22 6C13.2 6 6 13.2 6 22C6 30.8 13.2 38 22 38C30.8 38 38 30.8 38 22" stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round"/>
-                <path d="M38 22C38 18.5 36.5 15.5 34 13L35.5 11.5C36.8 10.2 38.8 10.2 40.1 11.5L41 12.4C42.3 13.7 42.3 15.7 41 17L38 20" stroke="#83C99A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M14 24L22 16L30 24" stroke="#83C99A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-              </g>
-              <text x="56" y="27" font-family="'Manrope', sans-serif" font-size="25" font-weight="800" letter-spacing="-0.5" fill="#FFFFFF">allround</text>
-              <text x="57" y="39" font-family="'Manrope', sans-serif" font-size="8.5" font-weight="700" letter-spacing="2" fill="#83C99A">DIENSTLEISTUNG GbR</text>
-            </svg>
+            <span class="card-badge">OPTION C</span>
+            <div class="card-title">Klassisches Handwerker-Gewerke (Schlüssel & Hammer)</div>
           </div>
         </div>
 
-        <div class="rationale">
-          <strong>Design-Begründung nach Markenprinzipien:</strong>
+        <div class="preview-box preview-light">
+          <svg width="220" height="44" viewBox="0 0 220 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g transform="translate(4, 2)">
+              <!-- Crossed Wrench (Sage Green) & Hammer (Navy) -->
+              <!-- Hammer from bottom-left to top-right -->
+              <path d="M10 32L24 16" stroke="#10283D" stroke-width="3" stroke-linecap="round" />
+              <path d="M21 14L27 8L30 11L24 17" stroke="#10283D" stroke-width="2.5" stroke-linejoin="round"
+                fill="#10283D" />
+              <!-- Wrench from bottom-right to top-left -->
+              <path d="M26 32L14 18" stroke="#83C99A" stroke-width="3.2" stroke-linecap="round" />
+              <path d="M12 16L13.2 14.8C14.2 13.8 15.8 13.8 16.8 14.8L17.5 15.5C18.5 16.5 18.5 18.1 17.5 19.1L16.3 20.3"
+                stroke="#83C99A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" />
+            </g>
+            <text x="52" y="25" font-family="'Segoe UI', sans-serif" font-size="24" font-weight="700"
+              letter-spacing="-0.4" fill="#10283D">allround</text>
+            <text x="53" y="37" font-family="'Segoe UI', sans-serif" font-size="8.5" font-weight="700"
+              letter-spacing="1.6" fill="#5C6D77">DIENSTLEISTUNG GbR</text>
+          </svg>
+        </div>
+
+        <div class="preview-box preview-dark">
+          <svg width="220" height="44" viewBox="0 0 220 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g transform="translate(4, 2)">
+              <path d="M10 32L24 16" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" />
+              <path d="M21 14L27 8L30 11L24 17" stroke="#FFFFFF" stroke-width="2.5" stroke-linejoin="round"
+                fill="#FFFFFF" />
+              <path d="M26 32L14 18" stroke="#83C99A" stroke-width="3.2" stroke-linecap="round" />
+              <path d="M12 16L13.2 14.8C14.2 13.8 15.8 13.8 16.8 14.8L17.5 15.5C18.5 16.5 18.5 18.1 17.5 19.1L16.3 20.3"
+                stroke="#83C99A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" />
+            </g>
+            <text x="52" y="25" font-family="'Segoe UI', sans-serif" font-size="24" font-weight="700"
+              letter-spacing="-0.4" fill="#FFFFFF">allround</text>
+            <text x="53" y="37" font-family="'Segoe UI', sans-serif" font-size="8.5" font-weight="700"
+              letter-spacing="1.6" fill="#83C99A">DIENSTLEISTUNG GbR</text>
+          </svg>
+        </div>
+
+        <div class="explanation">
+          <strong>Warum besonders wirksam:</strong>
           <ul>
-            <li><strong>Der Name als Form:</strong> Der offene Kreisring verkörpert das Versprechen „Allround“ (Rundum-Service ohne Lücken).</li>
-            <li><strong>Moderne Leichtigkeit:</strong> Ideal für mobile Displays und moderne Web-Auftritte, wirkt agil, reaktionsschnell und freundlich.</li>
+            <li>Traditionelles deutsches Handwerker-Motiv (Hammer & Schraubenschlüssel).</li>
+            <li>Steht unmissverständlich für Montage, Instandsetzung, Renovierung & Anpacken.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- OPTION D: WERKZEUG & GARTEN-KOMBI (SCHLÜSSEL & BLATT) -->
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <span class="card-badge">OPTION D</span>
+            <div class="card-title">Handwerk & Garten (Schlüssel & Salbeiblatt)</div>
+          </div>
+        </div>
+
+        <div class="preview-box preview-light">
+          <svg width="220" height="44" viewBox="0 0 220 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g transform="translate(4, 2)">
+              <!-- Navy Wrench -->
+              <path d="M12 32L24 16" stroke="#10283D" stroke-width="3.5" stroke-linecap="round" />
+              <path
+                d="M22.5 17.5L23.8 16.2C24.8 15.2 26.4 15.2 27.4 16.2L28.1 16.9C29.1 17.9 29.1 19.5 28.1 20.5L26.8 21.8"
+                stroke="#10283D" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" />
+              <!-- Sage Green Leaf wrapping around -->
+              <path d="M18 26C18 26 21 17 30 16C33 22 28 28 21 29" fill="#83C99A" />
+            </g>
+            <text x="52" y="25" font-family="'Segoe UI', sans-serif" font-size="24" font-weight="700"
+              letter-spacing="-0.4" fill="#10283D">allround</text>
+            <text x="53" y="37" font-family="'Segoe UI', sans-serif" font-size="8.5" font-weight="700"
+              letter-spacing="1.6" fill="#5C6D77">DIENSTLEISTUNG GbR</text>
+          </svg>
+        </div>
+
+        <div class="preview-box preview-dark">
+          <svg width="220" height="44" viewBox="0 0 220 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g transform="translate(4, 2)">
+              <path d="M12 32L24 16" stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round" />
+              <path
+                d="M22.5 17.5L23.8 16.2C24.8 15.2 26.4 15.2 27.4 16.2L28.1 16.9C29.1 17.9 29.1 19.5 28.1 20.5L26.8 21.8"
+                stroke="#FFFFFF" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M18 26C18 26 21 17 30 16C33 22 28 28 21 29" fill="#83C99A" />
+            </g>
+            <text x="52" y="25" font-family="'Segoe UI', sans-serif" font-size="24" font-weight="700"
+              letter-spacing="-0.4" fill="#FFFFFF">allround</text>
+            <text x="53" y="37" font-family="'Segoe UI', sans-serif" font-size="8.5" font-weight="700"
+              letter-spacing="1.6" fill="#83C99A">DIENSTLEISTUNG GbR</text>
+          </svg>
+        </div>
+
+        <div class="explanation">
+          <strong>Warum besonders wirksam:</strong>
+          <ul>
+            <li>Verbindet technisches Handwerk (Schlüssel) mit Natur & Grünpflege (Blatt).</li>
+            <li>Harmonisch und modern.</li>
           </ul>
         </div>
       </div>
 
     </div>
-
-    <!-- Instructions / Approval Banner -->
-    <div style="margin-top: 48px; background: #FFFFFF; border: 2px solid var(--navy); border-radius: 20px; padding: 32px; text-align: center;">
-      <h2 style="font-size: 22px; font-weight: 800; color: var(--navy); margin-bottom: 8px;">Entscheidung & Freigabe durch den Kunden</h2>
-      <p style="color: var(--muted); font-size: 15px; max-width: 720px; margin: 0 auto 24px;">
-        Bitte wählen Sie Ihren Favoriten (<strong>Konzept 01</strong>, <strong>Konzept 02</strong> oder <strong>Konzept 03</strong>) oder teilen Sie konkrete Anpassungswünsche mit. 
-        Erst nach Ihrer ausdrücklichen Freigabe werden die Website-Referenzen (Header, Footer, Favicon) final aktualisiert.
-      </p>
-      <div style="display: inline-flex; gap: 16px; flex-wrap: wrap; justify-content: center;">
-        <span style="background: var(--navy); color: #FFF; padding: 10px 24px; border-radius: 100px; font-weight: 700; font-size: 14px;">1. Konzept wählen</span>
-        <span style="background: var(--green); color: var(--navy); padding: 10px 24px; border-radius: 100px; font-weight: 700; font-size: 14px;">2. Kurze Rückmeldung geben</span>
-        <span style="background: var(--mist); color: var(--navy); border: 1px solid var(--border); padding: 10px 24px; border-radius: 100px; font-weight: 700; font-size: 14px;">3. Automatische Einbindung</span>
-      </div>
-    </div>
-
   </div>
-
 </body>
+
 </html>

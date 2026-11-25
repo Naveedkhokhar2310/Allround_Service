@@ -1,7 +1,8 @@
 import { Component, ChangeDetectionStrategy, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
-import { BUSINESS_PHONE, BUSINESS_LOCATION } from '@core/services/contact.service';
+import { BUSINESS_PHONE, BUSINESS_LOCATION, ContactService } from '@core/services/contact.service';
+import { ServicesCatalogService } from '@core/services/services-catalog.service';
 import { TranslationService } from '@core/services/translation.service';
 
 @Component({
@@ -21,11 +22,31 @@ import { TranslationService } from '@core/services/translation.service';
             <p class="brand-tagline">{{ t().footer.tagline }}</p>
           </div>
 
-          <!-- Company Details Column -->
-          <div class="footer-details">
-            <p class="company-name">Allround Dienstleistung GbR</p>
-            <p class="company-location">{{ location }}</p>
-            <a [href]="'tel:' + phoneClean" class="company-phone">{{ phone }}</a>
+          <!-- Services Column -->
+          <div class="footer-col footer-services-col">
+            <h4 class="footer-col-title">{{ t().footer.servicesTitle }}</h4>
+            <ul class="footer-services-list">
+              @for (service of services(); track service.id) {
+                <li>
+                  <a routerLink="/" fragment="services" class="footer-service-link">
+                    {{ service.title }}
+                  </a>
+                </li>
+              }
+            </ul>
+          </div>
+
+          <!-- Company Details & Contact Column -->
+          <div class="footer-col footer-details-col">
+            <h4 class="footer-col-title">{{ t().footer.contactTitle }}</h4>
+            <div class="footer-details">
+              <p class="company-name">Allround Dienstleistung GbR</p>
+              <p class="company-location">{{ location }}</p>
+              <a [href]="'tel:' + phoneClean" class="company-phone">{{ phone }}</a>
+              <a [href]="whatsappUrl" target="_blank" rel="noopener noreferrer" class="company-whatsapp">
+                WhatsApp Direktkontakt ↗
+              </a>
+            </div>
           </div>
 
           <!-- Back to Top Button -->
@@ -69,14 +90,18 @@ import { TranslationService } from '@core/services/translation.service';
     }
 
     .footer-main-row {
-      display: flex;
-      flex-direction: column;
-      gap: 32px;
-      justify-content: space-between;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 36px;
 
-      @media (min-width: 768px) {
-        flex-direction: row;
+      @media (min-width: 640px) {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      @media (min-width: 1024px) {
+        grid-template-columns: 1.3fr 1.3fr 1.2fr auto;
         align-items: flex-start;
+        gap: 48px;
       }
     }
 
@@ -111,22 +136,61 @@ import { TranslationService } from '@core/services/translation.service';
       }
     }
 
+    .footer-col {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .footer-col-title {
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--color-navy);
+      margin: 0;
+    }
+
+    .footer-services-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+
+      .footer-service-link {
+        font-size: 13px;
+        color: var(--color-muted);
+        text-decoration: none;
+        transition: color var(--transition-fast);
+
+        &:hover {
+          color: var(--color-navy);
+          text-decoration: underline;
+        }
+      }
+    }
+
     .footer-details {
       display: flex;
       flex-direction: column;
-      gap: 6px;
+      gap: 8px;
       font-size: 13px;
 
       .company-name {
         font-weight: 600;
         color: var(--color-navy);
+        margin: 0;
       }
 
       .company-location {
         color: var(--color-muted);
+        margin: 0;
       }
 
-      .company-phone {
+      .company-phone,
+      .company-whatsapp {
         color: var(--color-navy);
         text-decoration: none;
         font-weight: 500;
@@ -205,11 +269,16 @@ import { TranslationService } from '@core/services/translation.service';
 })
 export class FooterComponent {
   private readonly translationService = inject(TranslationService);
+  private readonly catalogService = inject(ServicesCatalogService);
+  private readonly contactService = inject(ContactService);
+
   readonly t = this.translationService.t;
+  readonly services = this.catalogService.services;
 
   readonly phone = BUSINESS_PHONE;
   readonly phoneClean = '+491739074381';
   readonly location = BUSINESS_LOCATION;
+  readonly whatsappUrl = this.contactService.getWhatsAppUrl();
 
   scrollToTop(): void {
     window.scrollTo({ top: 0, behavior: 'smooth' });

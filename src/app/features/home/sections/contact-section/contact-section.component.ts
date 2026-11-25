@@ -52,6 +52,34 @@ interface FormErrors {
             />
           </div>
 
+          <!-- Trust Commitments / Customer Promises Block -->
+          <div class="contact-trust-card">
+            <h4 class="trust-card-title">{{ t().contact.trustTitle }}</h4>
+            <ul class="trust-card-list">
+              <li class="trust-card-item">
+                <span class="trust-check" aria-hidden="true">✓</span>
+                <div class="trust-card-content">
+                  <span class="trust-title">{{ t().contact.trust1Title }}</span>
+                  <p class="trust-desc">{{ t().contact.trust1Desc }}</p>
+                </div>
+              </li>
+              <li class="trust-card-item">
+                <span class="trust-check" aria-hidden="true">✓</span>
+                <div class="trust-card-content">
+                  <span class="trust-title">{{ t().contact.trust2Title }}</span>
+                  <p class="trust-desc">{{ t().contact.trust2Desc }}</p>
+                </div>
+              </li>
+              <li class="trust-card-item">
+                <span class="trust-check" aria-hidden="true">✓</span>
+                <div class="trust-card-content">
+                  <span class="trust-title">{{ t().contact.trust3Title }}</span>
+                  <p class="trust-desc">{{ t().contact.trust3Desc }}</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+
           <p class="contact-location">{{ t().contact.location }}</p>
         </div>
 
@@ -212,7 +240,7 @@ interface FormErrors {
       align-items: flex-start;
 
       @media (min-width: 1024px) {
-        grid-template-columns: 480px 1fr;
+        grid-template-columns: 500px 1fr;
       }
     }
 
@@ -266,6 +294,77 @@ interface FormErrors {
 
       .whatsapp-btn-wrapper {
         margin-top: 4px;
+      }
+
+      .contact-trust-card {
+        margin-top: 12px;
+        padding: 20px;
+        background-color: var(--color-mist);
+        border-radius: var(--border-radius-md);
+        border: 1px solid var(--color-border);
+        border-left: 3px solid var(--color-green);
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+
+        .trust-card-title {
+          font-size: 13px;
+          font-weight: 700;
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+          color: var(--color-navy);
+          margin: 0;
+        }
+
+        .trust-card-list {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+          display: flex;
+          flex-direction: column;
+          gap: 14px;
+        }
+
+        .trust-card-item {
+          display: flex;
+          align-items: flex-start;
+          gap: 12px;
+
+          .trust-check {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background-color: var(--color-green);
+            color: var(--color-navy);
+            font-size: 12px;
+            font-weight: 700;
+            flex-shrink: 0;
+            margin-top: 1px;
+          }
+
+          .trust-card-content {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+
+            .trust-title {
+              font-size: 14px;
+              font-weight: 600;
+              color: var(--color-navy);
+              line-height: 1.4;
+            }
+
+            .trust-desc {
+              font-size: 13px;
+              line-height: 1.5;
+              color: var(--color-muted);
+              margin: 0;
+            }
+          }
+        }
       }
 
       .contact-location {

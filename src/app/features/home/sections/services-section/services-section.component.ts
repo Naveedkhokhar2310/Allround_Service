@@ -22,12 +22,6 @@ import { BadgeComponent } from '@shared/components/badge/badge.component';
               <span>{{ t().services.titleLine2 }}</span>
             </h2>
           </div>
-
-          <div class="header-right">
-            <p>{{ t().services.descLine1 }}</p>
-            <p>{{ t().services.descLine2 }}</p>
-            <p>{{ t().services.descLine3 }}</p>
-          </div>
         </div>
 
         <!-- 6-Card Grid -->
@@ -66,13 +60,7 @@ import { BadgeComponent } from '@shared/components/badge/badge.component';
     .services-header {
       display: flex;
       flex-direction: column;
-      gap: 24px;
-      justify-content: space-between;
-
-      @media (min-width: 768px) {
-        flex-direction: row;
-        align-items: flex-end;
-      }
+      gap: 16px;
 
       .header-left {
         display: flex;
@@ -87,18 +75,6 @@ import { BadgeComponent } from '@shared/components/badge/badge.component';
           color: var(--color-navy);
           display: flex;
           flex-direction: column;
-        }
-      }
-
-      .header-right {
-        font-size: 15px;
-        font-weight: 400;
-        line-height: 1.6;
-        color: var(--color-muted);
-        max-width: 380px;
-
-        p {
-          margin: 0;
         }
       }
     }
