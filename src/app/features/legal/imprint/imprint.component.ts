@@ -15,7 +15,8 @@ import { TranslationService } from '@core/services/translation.service';
       <section class="legal-section">
         <h2>{{ currentLang() === 'en' ? 'Information according to § 5 TMG' : 'Angaben gemäß § 5 TMG' }}</h2>
         <p><strong>Allround Dienstleistung GbR</strong></p>
-        <p>{{ currentLang() === 'en' ? 'Location: Weingarten, Baden-Württemberg, Germany' : 'Standort: Weingarten, Baden-Württemberg, Deutschland' }}</p>
+        <p>Liebfrauenstrasse 26, 88250 Weingarten</p>
+        <p>{{ currentLang() === 'en' ? 'Baden-Württemberg, Germany' : 'Baden-Württemberg, Deutschland' }}</p>
         <p>{{ currentLang() === 'en' ? 'Phone:' : 'Telefon:' }} <a href="tel:+491739074381">+49 173 9074381</a></p>
         <p>E-Mail: kontakt&#64;allround-weingarten.de</p>
       </section>

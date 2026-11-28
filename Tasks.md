@@ -56,11 +56,16 @@
 - [x] Build sticky mobile Quick Contact Bar (Direct Call & WhatsApp)
 - [x] Implement contact form validation, German error states, and feedback triggers
 - [x] Connect form submission to mailto / WhatsApp message generator
+- [x] Integrate Supabase (`@supabase/supabase-js`) for lead persistence in `public.leads` with RLS
+- [x] Configure `src/environments/environment.ts` & `environment.prod.ts` with Angular `fileReplacements`
+- [x] Set up Brevo transactional email notifications via Supabase Database Webhook + Edge Function
+- [x] Make all contact form validation and submission error messages reactively bilingual (`DE` | `EN`)
+- [x] Add customer trust commitment card to Contact section and 4-column Services navigation to Footer
+- [x] Update regional targeting strictly to Weingarten (Ravensburg) and remove Lake Constance / Bodensee references
 - [x] Implement Modern Signal-Based Multilingual Translation (DE | EN)
 - [x] Refine copy and German/English SEO content using `/copywriting`, `/content-strategy`, and `/seo-audit` skills
 - [x] Add Schema.org JSON-LD LocalBusiness structured data, robots.txt, and sitemap.xml
-- [x] Design official brand logo system in Figma (`Allround · Logo System` node `19:330` with primary light, inverted dark, transparent minimal, and app-icon variants)
-- [x] Export production SVG logo assets (`logo.svg`, `logo-white.svg`, `logo-mark.svg`, `favicon.svg`) and integrate into Angular Header, Footer, and Favicon
+- [x] Integrate official company logo (`public/assets/images/logo.svg`) into Header, Footer, `public/favicon.svg`, and multi-resolution `public/favicon.ico`
 
 ### Phase 7: Responsive Layout QA
 - [ ] Mobile viewport audit (360px – 480px)

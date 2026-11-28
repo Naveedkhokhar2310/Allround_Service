@@ -64,21 +64,23 @@ src/
   - In-place instant language switching with zero page reload, synchronized with `localStorage` and `document.documentElement.lang`.
 - **Service Catalog**: Managed via strongly-typed `ServicesCatalogService` combining the reactive translation schema with photography asset paths.
 - **Contact & Inquiry Handling**:
-  - `ContactService` defines an abstract interface `IContactService`.
-  - Initial implementation: `LocalContactService` (handles validation, client-side submission state, mailto / WhatsApp generation).
-  - Future implementation: `SupabaseContactService` seamlessly substituted via Angular's dependency injection (`provide: CONTACT_SERVICE, useClass: SupabaseContactService`).
+  - `ContactService` (`src/app/core/services/contact.service.ts`) initializes the `@supabase/supabase-js` client from `src/environments/environment.ts` (and `environment.prod.ts` for production builds).
+  - `submitInquiry()` validates required fields and GDPR consent, then inserts the enquiry into the Supabase `public.leads` table.
+  - Also provides direct WhatsApp (`getWhatsAppUrl()`) and `mailto:` (`getMailtoUrl()`) helpers.
 
-### 4. Future Supabase Integration Blueprint
-When backend capabilities are introduced:
-1. **Supabase Client Provider**:
-   - `provideSupabaseClient()` token injecting `@supabase/supabase-js`.
-2. **Database Tables**:
-   - `leads` (id, created_at, full_name, phone, email, service_type, message, status).
-   - `service_reviews` (id, author, rating, comment, date, approved).
-3. **Storage Bucket**:
-   - For customer image uploads during quotation (e.g. photos of clearance / moving items).
-4. **Edge Functions / SMTP**:
-   - Instant email/SMS notification to GbR management upon new quote submission.
+### 4. Implemented Backend & Email Notification Architecture (Supabase + Brevo)
+1. **Supabase Client & Environment Configuration**:
+   - `@supabase/supabase-js` configured via `src/environments/environment.ts` and `src/environments/environment.prod.ts` (switched automatically during production build via `angular.json` `fileReplacements`).
+   - Graceful fallback simulation if environment credentials are not configured.
+2. **Database Table & Row-Level Security (RLS)**:
+   - `public.leads` (`id`, `created_at`, `full_name`, `email`, `phone`, `service_type`, `message`, `consent`, `status`).
+   - RLS enabled: anonymous website visitors (`anon` role) have **INSERT-only** access; `SELECT`, `UPDATE`, and `DELETE` are restricted to authenticated admins.
+3. **Email Notifications via Brevo (Supabase Database Webhook + Edge Function)**:
+   - A Supabase Database Webhook listens for `INSERT` events on `public.leads` and invokes a Supabase Edge Function.
+   - The Edge Function reads the `BREVO_API_KEY` from Supabase Edge Function Secrets (never exposed to the client) and calls the Brevo Transactional Email API (`https://api.brevo.com/v3/smtp/email`).
+   - Sends an HTML notification email to the company inbox with `replyTo` set to the customer's submitted email address (`record.email`) for one-click replies.
+4. **Future Enhancements**:
+   - `service_reviews` table and Supabase Storage bucket for customer photo uploads during quotation.
 
 ### 5. Performance & Accessibility (a11y)
 - Zero bulky external CSS frameworks (no Bootstrap/Tailwind bloat unless specifically requested; custom lightweight SCSS design token system).

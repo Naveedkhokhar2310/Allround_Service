@@ -25,6 +25,7 @@ import { TranslationService } from '@core/services/translation.service';
         <h2>{{ currentLang() === 'en' ? '2. Responsible Entity' : '2. Verantwortliche Stelle' }}</h2>
         <p>
           <strong>Allround Dienstleistung GbR</strong><br />
+          Liebfrauenstrasse 26, 88250 Weingarten<br />
           Weingarten, Baden-Württemberg, Germany<br />
           Phone: +49 173 9074381<br />
           E-Mail: kontakt&#64;allround-weingarten.de

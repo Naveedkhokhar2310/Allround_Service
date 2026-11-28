@@ -1,7 +1,7 @@
 import { Component, ChangeDetectionStrategy, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
-import { BUSINESS_PHONE, BUSINESS_LOCATION, ContactService } from '@core/services/contact.service';
+import { BUSINESS_PHONE, BUSINESS_LOCATION, BUSINESS_ADDRESS, ContactService } from '@core/services/contact.service';
 import { ServicesCatalogService } from '@core/services/services-catalog.service';
 import { TranslationService } from '@core/services/translation.service';
 
@@ -41,6 +41,7 @@ import { TranslationService } from '@core/services/translation.service';
             <h4 class="footer-col-title">{{ t().footer.contactTitle }}</h4>
             <div class="footer-details">
               <p class="company-name">Allround Dienstleistung GbR</p>
+              <p class="company-address">{{ address }}</p>
               <p class="company-location">{{ location }}</p>
               <a [href]="'tel:' + phoneClean" class="company-phone">{{ phone }}</a>
               <a [href]="whatsappUrl" target="_blank" rel="noopener noreferrer" class="company-whatsapp">
@@ -184,6 +185,7 @@ import { TranslationService } from '@core/services/translation.service';
         margin: 0;
       }
 
+      .company-address,
       .company-location {
         color: var(--color-muted);
         margin: 0;
@@ -277,6 +279,7 @@ export class FooterComponent {
 
   readonly phone = BUSINESS_PHONE;
   readonly phoneClean = '+491739074381';
+  readonly address = BUSINESS_ADDRESS;
   readonly location = BUSINESS_LOCATION;
   readonly whatsappUrl = this.contactService.getWhatsAppUrl();
 

@@ -144,7 +144,7 @@ export const en: TranslationSchema = {
     trust3Desc: 'Attentive protection for floors, walls, and furniture – with a guaranteed tidy, broom-clean handover.',
     phoneSubtext: 'Call us directly. We are happy to help.',
     whatsappBtn: 'Chat on WhatsApp',
-    location: 'WEINGARTEN, GERMANY',
+    location: 'LIEBFRAUENSTRASSE 26 · 88250 WEINGARTEN, GERMANY',
     formTitle: 'Send a quick message',
     nameLabel: 'Your Name *',
     namePlaceholder: 'First and last name',
@@ -168,6 +168,7 @@ export const en: TranslationSchema = {
       email: 'Please enter a valid email address.',
       message: 'Please briefly describe your inquiry.',
       consent: 'Please agree to the privacy policy.',
+      submissionError: 'An error occurred while sending your inquiry. Please call us directly: +49 173 9074381',
     },
   },
   footer: {
