@@ -8,10 +8,10 @@ import { ServicesCatalogService } from '@core/services/services-catalog.service'
 import { TranslationService } from '@core/services/translation.service';
 
 interface FormErrors {
-  fullName?: string;
-  email?: string;
-  message?: string;
-  consent?: string;
+  fullName?: boolean;
+  email?: boolean;
+  message?: boolean;
+  consent?: boolean;
 }
 
 @Component({
@@ -87,6 +87,12 @@ interface FormErrors {
         <div class="contact-form-card">
           <h3 class="form-title">{{ t().contact.formTitle }}</h3>
 
+          @if (submissionState() === 'error') {
+            <div class="alert-box alert-error animate-fade-in" role="alert" style="margin-bottom: 20px; background-color: #fee2e2; border-left: 4px solid #ef4444; padding: 12px 16px; border-radius: 6px; color: #991b1b;">
+              <p style="margin: 0; font-size: 14px;">{{ t().contact.errors.submissionError }}</p>
+            </div>
+          }
+
           @if (submissionState() === 'success') {
             <div class="alert-box alert-success animate-fade-in" role="alert">
               <span class="alert-icon">✓</span>
@@ -111,7 +117,7 @@ interface FormErrors {
                   required
                 />
                 @if (validationErrors().fullName) {
-                  <span class="error-text">{{ validationErrors().fullName }}</span>
+                  <span class="error-text">{{ t().contact.errors.fullName }}</span>
                 }
               </div>
 
@@ -130,7 +136,7 @@ interface FormErrors {
                     required
                   />
                   @if (validationErrors().email) {
-                    <span class="error-text">{{ validationErrors().email }}</span>
+                    <span class="error-text">{{ t().contact.errors.email }}</span>
                   }
                 </div>
 
@@ -180,7 +186,7 @@ interface FormErrors {
                   required
                 ></textarea>
                 @if (validationErrors().message) {
-                  <span class="error-text">{{ validationErrors().message }}</span>
+                  <span class="error-text">{{ t().contact.errors.message }}</span>
                 }
               </div>
 
@@ -200,7 +206,7 @@ interface FormErrors {
                   </span>
                 </label>
                 @if (validationErrors().consent) {
-                  <span class="error-text">{{ validationErrors().consent }}</span>
+                  <span class="error-text">{{ t().contact.errors.consent }}</span>
                 }
               </div>
 
@@ -618,22 +624,21 @@ export class ContactSectionComponent {
 
   validateForm(): boolean {
     const errors: FormErrors = {};
-    const errorMessages = this.t().contact.errors;
 
     if (!this.formData.fullName.trim()) {
-      errors.fullName = errorMessages.fullName;
+      errors.fullName = true;
     }
 
     if (!this.formData.email.trim() || !/^\S+@\S+\.\S+$/.test(this.formData.email)) {
-      errors.email = errorMessages.email;
+      errors.email = true;
     }
 
     if (!this.formData.message.trim()) {
-      errors.message = errorMessages.message;
+      errors.message = true;
     }
 
     if (!this.formData.consent) {
-      errors.consent = errorMessages.consent;
+      errors.consent = true;
     }
 
     this.validationErrors.set(errors);
@@ -646,11 +651,14 @@ export class ContactSectionComponent {
     }
 
     this.isSubmitting.set(true);
+    this.submissionState.set('idle');
     const result = await this.contactService.submitInquiry(this.formData);
     this.isSubmitting.set(false);
 
     if (result.success) {
       this.submissionState.set('success');
+    } else {
+      this.submissionState.set('error');
     }
   }
 }

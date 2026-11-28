@@ -1,14 +1,33 @@
 import { Injectable } from '@angular/core';
+import { createClient, SupabaseClient } from '@supabase/supabase-js';
+import { environment } from '../../../environments/environment';
 import { ContactRequest, ContactSubmissionResult } from '../models/contact-request.model';
 
 export const BUSINESS_PHONE = '+49 173 9074381';
 export const BUSINESS_PHONE_CLEAN = '491739074381';
-export const BUSINESS_LOCATION = 'Weingarten, Germany';
+export const BUSINESS_ADDRESS = 'Liebfrauenstrasse 26, 88250 Weingarten';
+export const BUSINESS_LOCATION = 'Germany';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ContactService {
+  private readonly supabase: SupabaseClient | null = null;
+
+  constructor() {
+    const { url, anonKey } = environment.supabase;
+    if (url && anonKey && url.startsWith('http') && !url.includes('YOUR_SUPABASE')) {
+      try {
+        this.supabase = createClient(url, anonKey);
+        console.log('ContactService: Supabase client initialized with', url);
+      } catch (err) {
+        console.warn('Supabase client failed to initialize:', err);
+      }
+    } else {
+      console.warn('ContactService: Supabase URL/key not configured or using placeholder.');
+    }
+  }
+
   /**
    * Generates a pre-filled WhatsApp direct chat link
    */
@@ -31,28 +50,53 @@ export class ContactService {
   }
 
   /**
-   * Contact submission handler - prepared for future Supabase injection
+   * Contact submission handler - persists enquiries to Supabase 'leads' table
    */
   async submitInquiry(request: ContactRequest): Promise<ContactSubmissionResult> {
     if (!request.fullName || !request.email || !request.message || !request.consent) {
       return {
         success: false,
-        message: 'Bitte füllen Sie alle erforderlichen Pflichtfelder (*) aus und stimmen Sie den Datenschutzbestimmungen zu.'
+        message: 'Bitte füllen Sie alle erforderlichen Pflichtfelder (*) aus und stimmen Sie den Datenschutzbestimmungen zu.',
       };
     }
 
-    // In-memory / client processing until Supabase client is configured
     try {
-      // Simulate asynchronous persistence
-      await new Promise((resolve) => setTimeout(resolve, 300));
+      if (this.supabase) {
+        console.log('ContactService: sending inquiry to Supabase...', request);
+        const { error } = await this.supabase.from('leads').insert([
+          {
+            full_name: request.fullName.trim(),
+            email: request.email.trim(),
+            phone: request.phone ? request.phone.trim() : null,
+            service_type: request.serviceId || 'Allgemein',
+            message: request.message.trim(),
+            consent: request.consent,
+          },
+        ]);
+
+        if (error) {
+          console.error('Supabase lead insertion error:', error);
+          return {
+            success: false,
+            message: 'Fehler beim Übertragen an Supabase: ' + error.message,
+          };
+        }
+
+        console.log('ContactService: inquiry saved to Supabase successfully!');
+      } else {
+        console.warn('ContactService: Supabase client is not initialized.');
+        await new Promise((resolve) => setTimeout(resolve, 300));
+      }
+
       return {
         success: true,
-        message: 'Vielen Dank für Ihre Anfrage! Wir melden uns schnellstmöglich bei Ihnen.'
+        message: 'Vielen Dank für Ihre Anfrage! Wir melden uns schnellstmöglich bei Ihnen.',
       };
-    } catch {
+    } catch (err: any) {
+      console.error('Contact submission error:', err);
       return {
         success: false,
-        message: 'Beim Senden ist ein Fehler aufgetreten. Bitte rufen Sie uns direkt an: ' + BUSINESS_PHONE
+        message: 'Beim Senden ist ein Fehler aufgetreten: ' + (err?.message || BUSINESS_PHONE),
       };
     }
   }

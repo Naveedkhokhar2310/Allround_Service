@@ -46,3 +46,8 @@ Thumbs.db
 # Graphify
 graphify-out/
 .agents/
+
+# Environment files
+.env
+.env.*
+

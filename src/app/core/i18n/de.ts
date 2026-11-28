@@ -144,7 +144,7 @@ export const de: TranslationSchema = {
     trust3Desc: 'Achtsamer Schutz für Böden, Wände und Möbel – am Ende übergeben wir alles garantiert sauber und besenrein.',
     phoneSubtext: 'Rufen Sie uns direkt an. Wir beraten Sie gern.',
     whatsappBtn: 'Per WhatsApp schreiben',
-    location: 'WEINGARTEN, DEUTSCHLAND',
+    location: 'LIEBFRAUENSTRASSE 26 · 88250 WEINGARTEN, DEUTSCHLAND',
     formTitle: 'Kurze Nachricht schreiben',
     nameLabel: 'Ihr Name *',
     namePlaceholder: 'Vor- und Nachname',
@@ -168,6 +168,7 @@ export const de: TranslationSchema = {
       email: 'Bitte geben Sie eine gültige E-Mail-Adresse ein.',
       message: 'Bitte beschreiben Sie kurz Ihr Anliegen.',
       consent: 'Bitte stimmen Sie den Datenschutzhinweisen zu.',
+      submissionError: 'Beim Senden ist ein Fehler aufgetreten. Bitte rufen Sie uns direkt an: +49 173 9074381',
     },
   },
   footer: {

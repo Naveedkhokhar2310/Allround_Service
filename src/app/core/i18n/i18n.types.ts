@@ -99,6 +99,7 @@ export interface TranslationSchema {
       email: string;
       message: string;
       consent: string;
+      submissionError: string;
     };
   };
   footer: {

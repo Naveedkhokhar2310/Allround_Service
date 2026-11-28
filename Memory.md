@@ -19,7 +19,7 @@
 - **Language**: TypeScript (strict mode enabled)
 - **Styling**: SCSS with CSS custom properties design tokens, mobile-first responsive architecture
 - **State & Reactivity**: Angular Signals (`signal`, `computed`), `ChangeDetectionStrategy.OnPush`
-- **Backend**: None initially; abstract service layer prepared for seamless future Supabase integration (database, storage, auth, leads)
+- **Backend & Email Notifications**: Supabase PostgreSQL (`public.leads` table with RLS `INSERT`-only policy for `anon`) via `@supabase/supabase-js` and `src/environments/`, paired with a Supabase Database Webhook → Edge Function → Brevo Transactional Email API (`BREVO_API_KEY` stored in Supabase Secrets).
 - **Compliance**: Full DSGVO / German TMG compliance (local fonts, cookie-less or compliant, Impressum and Datenschutzerklärung)
 - **Version Control**: Git initialized, conventional commit convention
 
@@ -57,7 +57,10 @@
 - Content Refined with Plain Language & "Reinigung, Räumung & Entsorgung":
   - Added primary service title & description: **Reinigung, Räumung & Entsorgung** ("Professionelle Reinigungs- und Räumungsarbeiten für Privat- und Geschäftskunden. Von der regelmäßigen Gebäudereinigung bis zur vollständigen Räumung und Entsorgung – zuverlässig, gründlich und flexibel.").
   - Executed copy-editing passes across all sections (Hero, Trust bar, About, 6 Services, Values, Contact, and Index metadata) in both German (`de.ts`) and English (`en.ts`). Replaced bureaucratic jargon (Nominalstil, passive voice, over-complicated formulations) with active, straightforward, customer-friendly plain language without losing any critical facts (Weingarten, Ravensburg, phone, GDPR, fixed pricing, reliability).
-- Favicon Updated with Brand Logo: Replaced the default Angular placeholder favicon with the official brand monogram squircle in both modern scalable SVG (`public/favicon.svg`) and binary multi-resolution format (`public/favicon.ico`). Both are rendered in `#10283D` Allround Navy with White structural pillar and `#83C99A` Sage Green precision tool flank, resolving cleanly across all modern browsers and legacy search crawlers.
+- Official Brand Logo & Favicon Updated: Integrated the user's official `public/assets/images/logo.svg` across Header, Footer, `public/favicon.svg`, and generated a multi-resolution `public/favicon.ico` (16x16, 32x32, 48x48, 64x64).
+- Region Updated to Weingarten (Ravensburg): Removed all Bodensee / Lake Constance references across `de.ts`, `en.ts`, and `src/index.html` (`areaServed` and keywords).
+- UI & Trust Enhancements: Added customer promise commitments (*Ehrlichkeit & faire Festpreise*, *Handschlagqualität & Termintreue*, *Sorgfalt & Sauberkeit*) to Contact section, added a Services navigation column to Footer, streamlined Services section header, and refactored all contact form validation/submission errors to be reactively bilingual (`DE` | `EN`).
+- Supabase & Brevo Integration Completed: Connected `ContactService` to Supabase (`leads` table with RLS) via `src/environments/` and configured Brevo email notifications via Supabase Database Webhook + Edge Function (secrets stored securely on Supabase).
 - The development server is currently running live on `http://localhost:4200/`.
 - All Figma sections (Header, Hero, Vertrauensleiste, Über uns, 6 Service Cards, Warum Allround, Kontakt form, Footer, Mobile floating bar) are live and multilingual.
 - Ready for Phase 6: Navigation, interactions, and final QA refinements.
